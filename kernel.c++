@@ -81,6 +81,11 @@ void terminal_putentryat(char c, uint8_t color, size_t x, size_t y) {
 }
 
 void terminal_putchar(char c) {
+  if (c == '\n') {
+    ++terminal_row;
+    terminal_column = 0;
+    return;
+  }
   terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
   if (++terminal_column == VGA_WIDTH) {
     terminal_column = 0;
@@ -104,5 +109,6 @@ extern "C"
 void kernel_main(void) {
   terminal_initialize();
   terminal_writestring("Hello, world!\n");
+  terminal_writestring("Hi again!\n");
 }
 
