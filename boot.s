@@ -1,7 +1,7 @@
 /* Declare constants */
 .set ALIGN,    1<<0             # Bitwise shift left 0 (equals 1)
 .set MEMINFO,  1<<1             # Bitwise shift left 1 (equals 2)
-.set FLAGS,    ALIGN | MEMINFO  # 
+.set FLAGS,    ALIGN | MEMINFO  #
 .set MAGIC,    0x1BADB002       # 'Magic number' that lets bootloader find the header
 .set CHECKSUM, -(MAGIC +FLAGS)  # Proves we are in multiboot
 

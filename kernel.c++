@@ -35,6 +35,10 @@ enum vga_color {
 	VGA_COLOR_WHITE = 15,
 };
 
+class some_random_class {
+
+};
+
 static inline uint8_t vga_entry_color(enum vga_color fg, enum vga_color bg) {
   return fg | bg << 4;
 }
@@ -61,7 +65,7 @@ uint16_t* terminal_buffer;
 void terminal_initialize(void) {
   terminal_row = 0;
   terminal_column = 0;
-  terminal_color = vga_entry(VGA_COLOR_LIGHT_GREY, VGA_COLOR_WHITE);
+  terminal_color = vga_entry_color(VGA_COLOR_WHITE, VGA_COLOR_BLACK);
   terminal_buffer = (uint16_t*) 0xB8000;
   for (size_t y = 0; y < VGA_HEIGHT; y++) {
     for (size_t x = 0; x < VGA_WIDTH; x++) {
@@ -80,12 +84,7 @@ void terminal_putentryat(char c, uint8_t color, size_t x, size_t y) {
   terminal_buffer[index] = vga_entry(c, color);
 }
 
-void terminal_putchar(char c) {
-  if (c == '\n') {
-    ++terminal_row;
-    terminal_column = 0;
-    return;
-  }
+void terminal_print_char(char c) {
   terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
   if (++terminal_column == VGA_WIDTH) {
     terminal_column = 0;
@@ -94,13 +93,38 @@ void terminal_putchar(char c) {
   }
 }
 
-void terminal_write(const char* data, size_t size) {
+void terminal_write(const char* string, size_t size) {
   for (size_t i = 0; i < size; i++)
-    terminal_putchar(data[i]);
+    terminal_print_char(string[i]);
 }
 
-void terminal_writestring(const char* data) {
-  terminal_write(data, strlen(data));
+void terminal_print(const char* string) {
+  terminal_write(string, strlen(string));
+}
+
+void terminal_println(const char* string) {
+  terminal_write(string, strlen(string));
+  ++terminal_row;
+  terminal_column = 0;
+}
+
+static inline uint8_t inb(uint16_t port) {
+  uint8_t ret;
+  asm volatile ( "inb %1, %0"
+                 : "=a"(ret)
+                 : "Nd" (port) );
+  return ret;
+}
+
+char get_scan_code() {
+    char c=0;
+    do {
+        if(inb(0x60) !=c) {
+          c=inb(0x60);
+          if(c>0)
+            return c;
+        }
+    } while(1);
 }
 
 #if defined(__cplusplus)
@@ -108,7 +132,6 @@ extern "C"
 #endif
 void kernel_main(void) {
   terminal_initialize();
-  terminal_writestring("Hello, world!\n");
-  terminal_writestring("Hi again!\n");
+  terminal_println("Testing input");
+  terminal_println((char*)get_scan_code());
 }
-
