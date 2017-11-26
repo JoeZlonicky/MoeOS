@@ -108,6 +108,13 @@ void terminal_println(const char* string) {
   terminal_column = 0;
 }
 
+char* int_to_string(int value, int base) {
+  static char buffer[32] = {0};
+  int i = 30;
+  for (; value && i; --i, value /= base)
+    buffer[i] = "0123456789abcdef"[value % base];
+  return &buffer[i+1];
+}
 static inline uint8_t inb(uint16_t port) {
   uint8_t ret;
   asm volatile ( "inb %1, %0"
@@ -118,13 +125,13 @@ static inline uint8_t inb(uint16_t port) {
 
 char get_scan_code() {
     char c=0;
-    do {
+    while(true){
         if(inb(0x60) !=c) {
           c=inb(0x60);
           if(c>0)
             return c;
         }
-    } while(1);
+    }
 }
 
 #if defined(__cplusplus)
@@ -132,6 +139,8 @@ extern "C"
 #endif
 void kernel_main(void) {
   terminal_initialize();
+  terminal_print("Testing int to char: ");
+  terminal_println(int_to_string(512, 10));
   terminal_println("Testing input");
-  terminal_println((char*)get_scan_code());
+  terminal_println(int_to_string(get_scan_code(), 2));
 }
