@@ -1,7 +1,9 @@
 .section .init
-  /* crtend object files init sections will be placed here */
-  popl %ebp
-  ret
+	/* gcc will nicely put the contents of crtend.o's .init section here. */
+	popl %ebp
+	ret
 
 .section .fini
-  /* crtend object files fini sections will be placed here */
+	/* gcc will nicely put the contents of crtend.o's .fini section here. */
+	popl %ebp
+	ret
