@@ -1,7 +1,9 @@
 .section .init
-  /* crtend object files init sections will be placed here */
+  /* crtend object file .init section will get placed here */
   popl %ebp
   ret
 
 .section .fini
-  /* crtend object files fini sections will be placed here */
+  /* crtend object file .fini section will get placed here */
+  popl %ebp
+  ret
