@@ -1,4 +1,3 @@
-set -e
 . ./config.sh
 
 mkdir -p "$SYSROOT"

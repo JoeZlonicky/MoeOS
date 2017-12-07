@@ -90,4 +90,4 @@ install-libs: $(BINARIES)
 	cp $(BINARIES) $(DESTDIR)$(LIBDIR)
 
 -include $(OBJS:.o=.d)
--include $(LIBK_OBJS:.-=.d)
+-include $(LIBK_OBJS:.o-=.d)

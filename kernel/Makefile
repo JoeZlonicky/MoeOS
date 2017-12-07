@@ -52,7 +52,7 @@ moe.kernel: $(OBJS) $(ARCHDIR)/linker.ld
 	grub-file --is-x86-multiboot moe.kernel
 
 $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
-	OBJ='$(CC) $(CFLAGS) $(LDFLAGS) -print-file-name=$(@F)' && cp "$$OBJ"
+	OBJ='$(CC) $(CFLAGS) $(LDFLAGS) -print-file-name=$(@F)' && cp "$$OBJ" $@
 
 .c.o:
 	$(CC) -MD -c $< -o $@ -std=gnu11 $(CFLAGS) $(CPPFLAGS)
@@ -61,7 +61,7 @@ $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
 
 clean:
 	rm -f moe.kernel
-	rm -f $(OBJS) *.0 */*.0 */*/*.0
+	rm -f $(OBJS) *.o */*.o */*/*.o
 	rm -f $(OBJS: .o=.d) *.d */*.d *.*.*.d
 
 install: install-headers install-kernel

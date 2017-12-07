@@ -1,4 +1,3 @@
-set -e
 . ./build.sh
 
 mkdir -p isodir
