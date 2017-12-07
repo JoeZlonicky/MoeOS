@@ -28,7 +28,7 @@ kernel/kernel.o \
 
 OBJS=\
 $(ARCHDIR)/crti.o \
-$(ARCHDIR)/crtbegin.p \
+$(ARCHDIR)/crtbegin.o \
 $(KERNEL_OBJS) \
 $(ARCHDIR)/crtend.o \
 $(ARCHDIR)/crtn.o \

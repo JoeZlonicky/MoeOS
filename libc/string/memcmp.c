@@ -1,6 +1,6 @@
 #include <string.h>
 
-int memcmp(const void* a_ptr, cosnt void* b_ptr, size_t size) {
+int memcmp(const void* a_ptr, const void* b_ptr, size_t size) {
   const unsigned char* a = (const unsigned char*) a_ptr;
   const unsigned char* b = (const unsigned char*) b_ptr;
   for (size_t i = 0; i < size; i++) {
