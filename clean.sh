@@ -1,3 +1,4 @@
+set -e
 . ./config.sh
 
 for PROJECT in $PROJECTS; do
