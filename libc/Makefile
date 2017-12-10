@@ -48,7 +48,7 @@ $(HOSTEDOBJS) \
 
 LIBK_OBJS=$(FREEOBJS:.o=.libk.o)
 
-#BINARIES=libc.a libk.a $ Not ready for libc yet
+#BINARIES=libc.a libk.a # Not ready for libc yet
 BINARIES=libk.a
 
 .PHONY:all clean install install-headers install-libs
@@ -90,4 +90,4 @@ install-libs: $(BINARIES)
 	cp $(BINARIES) $(DESTDIR)$(LIBDIR)
 
 -include $(OBJS:.o=.d)
--include $(LIBK_OBJS:.o-=.d)
+-include $(LIBK_OBJS:.o=.d)

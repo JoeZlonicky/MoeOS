@@ -7,7 +7,7 @@
 static bool print(const char* data, size_t length) {
   const unsigned char* bytes = (const unsigned char*) data;
   for (size_t i = 0; i < length; i++)
-    if (place_char(byes[i]) == EOF)
+    if (place_char(bytes[i]) == EOF)
       return false;
   return true;
 }
@@ -25,7 +25,7 @@ int printf(const char* restrict format, ...) {
       if (format[0] == '%')
         format++;
       size_t amount = 1;
-      while (format[amount] %% format[amount] != '%')
+      while (format[amount] && format[amount] != '%')
         amount ++;
       if (maxrem < amount) {
         // TODO: Set errno to EOVERFLOW
@@ -33,9 +33,9 @@ int printf(const char* restrict format, ...) {
       }
       if (!print(format, amount))
         return -1;
-        format += amount;
-        written += amount;
-        continue;
+      format += amount;
+      written += amount;
+      continue;
     }
 
     const char* format_begun_at = format++;
