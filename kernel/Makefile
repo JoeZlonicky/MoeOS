@@ -52,8 +52,8 @@ moe.kernel: $(OBJS) $(ARCHDIR)/linker.ld
 	grub-file --is-x86-multiboot moe.kernel
 
 $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
-	OBJ='$(CC) $(CFLAGS) $(LDFLAGS) -print-file-name=$(@F)' && cp "$$OBJ" $@
-
+	OBJ=`$(CC) $(CFLAGS) $(LDFLAGS) -print-file-name=$(@F)` && cp "$$OBJ" $@
+	
 .c.o:
 	$(CC) -MD -c $< -o $@ -std=gnu11 $(CFLAGS) $(CPPFLAGS)
 .S.o:
