@@ -13,6 +13,11 @@ EXEC_PREFIX?=$(PREFIX)
 BOOTDIR?=$(EXEC_PREFIX)/boot
 INCLUDEDIR?=$(PREFIX)/include
 
+CFLAGS:=$(CFLAGS) -ffreestanding -Wall -Wextra
+CPPFLAGS:=$(CPPFLAGS) -D__is_kernel -Iinclude
+LDFLAGS:=$(LDFLAGS)
+LIBS:=$(LIBS) -nostdlib -lk -lgcc
+
 ARCHDIR=arch/$(HOSTARCH)
 
 include $(ARCHDIR)/make.config
@@ -53,7 +58,7 @@ moe.kernel: $(OBJS) $(ARCHDIR)/linker.ld
 
 $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
 	OBJ=`$(CC) $(CFLAGS) $(LDFLAGS) -print-file-name=$(@F)` && cp "$$OBJ" $@
-	
+
 .c.o:
 	$(CC) -MD -c $< -o $@ -std=gnu11 $(CFLAGS) $(CPPFLAGS)
 .S.o:
@@ -62,7 +67,7 @@ $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
 clean:
 	rm -f moe.kernel
 	rm -f $(OBJS) *.o */*.o */*/*.o
-	rm -f $(OBJS: .o=.d) *.d */*.d *.*.*.d
+	rm -f $(OBJS:.o=.d) *.d */*.d *.*.*.d
 
 install: install-headers install-kernel
 
