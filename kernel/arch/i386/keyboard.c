@@ -1,8 +1,9 @@
 #include <stdint.h>
+#include <stddef.h>
 #include <kernel/keyboard.h>
 
 
-uint8_t inb(uint16_t port)
+static inline uint8_t inb(uint16_t port)
 {
   uint8_t ret;
   asm volatile ( "inb %1, %0"

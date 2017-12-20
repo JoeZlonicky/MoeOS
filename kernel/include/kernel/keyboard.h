@@ -1,10 +1,10 @@
-#ifndef _KEYBOARD_H
-#define _KEYBOARD_H
+#ifndef _KERNEL_KEYBOARD_H
+#define _KERNEL_KEYBOARD_H
 
-
+#include <stddef.h>
 #include <stdint.h>
 
-uint8_t inb(uint16_t port);
+static inline uint8_t inb(uint16_t port);
 char get_scancode();
 char get_char();
 
