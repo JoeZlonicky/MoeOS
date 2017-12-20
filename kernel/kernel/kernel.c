@@ -6,5 +6,5 @@
 
 void kernel_main(void) {
   terminal_initialize();
-  printf(get_char())
+  printf(get_char());
 }

@@ -11,7 +11,6 @@ static inline uint8_t inb(uint16_t port)
   return ret;
 }
 
-
 char get_scancode()
 {
   char c = 0;
