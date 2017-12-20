@@ -1,4 +1,5 @@
 #include <kernel/keyboard.h>
+#include <stdint.h>
 
 
 static inline uint8_t inb(uint16_t port)
