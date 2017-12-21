@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stddef.h>
+#include <string.h>
 #include <kernel/keyboard.h>
 
 
@@ -15,13 +16,13 @@ static inline uint8_t inb(uint16_t port)
 char get_scancode()
 {
   char c = 0;
-  do {
-    if(inb(0x60) != c) {
+  while(1) {
+    if(inb(0x60) != (unsigned)c) {
       c = inb(0x60);
       if(c > 0)
         return c;
     }
-  } while(1);
+  }
 }
 
 char get_char()
