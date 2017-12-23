@@ -4,6 +4,8 @@
 #include <kernel/keyboard.h>
 
 
+char* scan_codes[] = {0, 0, "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+
 static inline uint8_t inb(uint16_t port)
 {
   uint8_t ret;
@@ -25,7 +27,8 @@ char get_scancode()
   }
 }
 
-char get_char()
+char* get_char()
 {
-    return get_scancode() + 1;
+    int index = get_scancode();
+    return scan_codes[index];
 }

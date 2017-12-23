@@ -7,6 +7,6 @@
 
 void kernel_main(void) {
   terminal_initialize();
-  printf("Keyboard input: ");
-  printf(itoa(get_char(), 2));
+  terminal_print("Input: ");
+  terminal_print(get_char());
 }
