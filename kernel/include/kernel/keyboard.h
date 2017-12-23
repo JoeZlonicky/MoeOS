@@ -7,4 +7,5 @@
 char get_scancode();
 char* get_char();
 
+
 #endif

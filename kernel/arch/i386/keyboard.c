@@ -18,13 +18,15 @@ static inline uint8_t inb(uint16_t port)
 char get_scancode()
 {
   char c = 0;
-  while(1) {
+  do {
     if(inb(0x60) != (unsigned)c) {
       c = inb(0x60);
+      
       if(c > 0)
+        printf(itoa(c, 10));
         return c;
     }
-  }
+  } while(1);
 }
 
 char* get_char()
