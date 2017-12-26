@@ -4,7 +4,9 @@
 #include <kernel/keyboard.h>
 
 
-char* scan_codes[] = {0, 0, "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+char* scan_codes[] = {0, 0, "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
+, 0, 0, 0, 0, "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", 0, 0, 0, 0, "a",
+"s", "d", "f", "g", "h", "j", "k", "l", 0, 0, 0, 0, 0, "z", "x", "c", "v", "b", "n", "m" };
 
 static inline uint8_t inb(uint16_t port)
 {
@@ -21,9 +23,8 @@ char get_scancode()
   do {
     if(inb(0x60) != (unsigned)c) {
       c = inb(0x60);
-      
+
       if(c > 0)
-        printf(itoa(c, 10));
         return c;
     }
   } while(1);
