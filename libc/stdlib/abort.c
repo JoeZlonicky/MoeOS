@@ -3,13 +3,13 @@
 
 __attribute__((__noreturn__))
 void abort(void) {
-  #if defined(__is_libk)
+#if defined(__is_libk)
     // TODO: Add proper kernel panic
     printf("Kernel: panic: abort()\n");
-  #else
+#else
     // TODO: Abnormally terminate the process as if by SIGABRT.
     printf("abort()\n");
-  #endif
-      while (1) { }
-      __builtin_unreachable();
+#endif
+    while (1) { }
+    __builtin_unreachable();
 }

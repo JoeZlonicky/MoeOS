@@ -19,7 +19,7 @@ static uint16_t* terminal_buffer;
 void terminal_initialize(void) {
   terminal_row = 0;
   terminal_column = 0;
-  terminal_color =  vga_entry(VGA_COLOR_LIGHT_GREEN, VGA_COLOR_MAGENTA);
+  terminal_color =  vga_entry_color(VGA_COLOR_LIGHT_GREEN, VGA_COLOR_MAGENTA);
   terminal_buffer = VGA_MEMORY;
   for (size_t y = 0; y < VGA_HEIGHT; y++) {
     for (size_t x = 0; x < VGA_WIDTH; x++) {
@@ -43,10 +43,9 @@ void terminal_place_char(char c) {
   terminal_place_entry(u_c, terminal_color, terminal_column, terminal_row);
   if (++terminal_column == VGA_WIDTH) {
     terminal_column = 0;
-    ++terminal_row;
+    if (++terminal_row == VGA_HEIGHT)
+      terminal_row = 0;
   }
-  if (terminal_row == VGA_HEIGHT)
-    terminal_row = 0;
 }
 
 void terminal_write(const char* data, size_t size) {
