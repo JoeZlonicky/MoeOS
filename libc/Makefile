@@ -77,8 +77,8 @@ libk.a: $(LIBK_OBJS)
 
 clean:
 	rm -f $(BINARIES) *.a
-	rm -f $(OBJS) $(LIBK_OBJS) *.0 */*.o */*/*.o
-	rm -f $(OBJS:.=.d) $(LIBK_OBJS:.o=.d) *.d */*.d */*/*.d
+	rm -f $(OBJS) $(LIBK_OBJS) *.o */*.o */*/*.o
+	rm -f $(OBJS:.o=.d) $(LIBK_OBJS:.o=.d) *.d */*.d */*/*.d
 
 install: install-headers install-libs
 
