@@ -49,6 +49,7 @@ int printf(const char* restrict format, ...) {
       }
       if (!print(&c, sizeof(c)))
         return -1;
+      written++;
     }
     else if (*format == 's') {
       format++;
