@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include <kernel/tty.h>
+#include <kernel/cursor.h>
 
 #include "vga.h"
 
@@ -40,12 +41,25 @@ void terminal_place_entry(unsigned char c, uint8_t color, size_t x, size_t y) {
 
 void terminal_place_char(char c) {
   unsigned char u_c = c;
-  terminal_place_entry(u_c, terminal_color, terminal_column, terminal_row);
-  if (++terminal_column == VGA_WIDTH) {
+  if (u_c=='\n') {
+    ++terminal_row;
     terminal_column = 0;
-    if (++terminal_row == VGA_HEIGHT)
-      terminal_row = 0;
+  } else if (u_c == '\b') {
+        if (terminal_column > 1) {
+            --terminal_column;
+            terminal_place_entry(' ', terminal_color, terminal_column, terminal_row);
+        }
+  } else if (u_c == '\t') {
+      terminal_column += 4;
+  } else {
+    terminal_place_entry(u_c, terminal_color, terminal_column, terminal_row);
+    if (++terminal_column == VGA_WIDTH) {
+      terminal_column = 0;
+      if (++terminal_row == VGA_HEIGHT)
+        terminal_row = 0;
+    }
   }
+  update_cursor(terminal_column, terminal_row, VGA_WIDTH);
 }
 
 void terminal_write(const char* data, size_t size) {

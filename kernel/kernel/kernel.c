@@ -5,6 +5,7 @@
 
 void kernel_main(void) {
   terminal_initialize();
+  printf(">");
   while (1) {
     printf(get_char());
   }
