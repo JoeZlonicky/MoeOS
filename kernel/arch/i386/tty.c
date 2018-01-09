@@ -83,4 +83,6 @@ void terminal_clear(void) {
       terminal_place_entry(' ', terminal_color, x, y);
     }
   }
+  terminal_row = 0;
+  terminal_column = 0;
 }
