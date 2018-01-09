@@ -70,3 +70,11 @@ void terminal_write(const char* data, size_t size) {
 void terminal_print(const char* string) {
   terminal_write(string, strlen(string));
 }
+
+void terminal_clear(void) {
+  for(size_t y=0; y < VGA_HEIGHT; ++y) {
+    for(size_t x=0; x < VGA_WIDTH; ++x) {
+      terminal_place_entry(' ', terminal_color, x, y)
+    }
+  }
+}
