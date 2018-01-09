@@ -8,9 +8,9 @@
 void kernel_main(void) {
   terminal_initialize();
   printf("Welcome To MoeOS!\n");
-  print_option("Option 1", false);
-  print_option("Option 2", true);
-  print_option("Option 3", false);
+  print_option("Option 1\n", false);
+  print_option("Option 2\n", true);
+  print_option("Option 3\n", false);
   while (1) {
     printf(get_char());
   }
@@ -24,5 +24,3 @@ void print_option(char* name, bool highlighted) {
     terminal_set_color(VGA_COLOR_LIGHT_GREY | VGA_COLOR_BLACK << 4);
   printf("\n");
 }
-    
-    
