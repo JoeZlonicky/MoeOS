@@ -7,6 +7,7 @@
 
 void kernel_main(void) {
   terminal_initialize();
+  printf("Welcome To MoeOS!\n");
   print_option("Option 1", false);
   print_option("Option 2", true);
   print_option("Option 3", false);
