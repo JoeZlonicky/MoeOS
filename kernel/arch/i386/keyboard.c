@@ -9,10 +9,6 @@ char* scan_codes[] = {0, 0, "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
 "s", "d", "f", "g", "h", "j", "k", "l", 0, 0, 0, 0, 0, "z", "x", "c", "v", "b", "n", "m",
 ",", ".", "/", 0, "*", 0, " ", };
 
-char* valid_characters[] = {" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", 
-"j", "k", "l", "m", "n", "o", "p", "q", "r", "s","t", "u", "v", "w", "x", "y", "z",
-",", ".", "[", "]", "/", "*", "-", "=", "\n", "\b", "\t"};
-
 static inline uint8_t inb(uint16_t port)
 {
   uint8_t ret;
@@ -36,8 +32,8 @@ char* get_char()
     while(1) {
         int index = get_scancode();
         char* character = scan_codes[index];
-        for(unsigned int x=0; x < sizeof(valid_characters)/sizeof(valid_characters[0]); ++x) {
-            if (character == valid_characters[x]) return character;
+        if (character != (char*)0) {
+          return character;
         }
     }
 }
