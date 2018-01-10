@@ -48,7 +48,6 @@ void terminal_place_char(char c) {
   if (u_c=='\n') {
     ++terminal_row;
     terminal_column = 0;
-    printf(">");
 
   } else if (u_c == '\b') {
         if (terminal_column > 1) {
