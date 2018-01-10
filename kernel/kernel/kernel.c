@@ -7,7 +7,7 @@
 
 void kernel_main(void) {
   terminal_initialize();
-  printf("Welcome To MoeOS!\n");
+  welcome_screen();
   print_option("Option 1", false);
   print_option("Option 2", true);
   print_option("Option 3", false);
@@ -25,4 +25,13 @@ void print_option(char* name, bool highlighted) {
   printf("\n");
 }
     
-    
+void welcome_screen() {
+  printf(">M   M MMMMM MMMMM   MMMMM MMMMM\n");
+  printf("MM MM M   M M       M   M M    \n");
+  printf("M M M M   M MMM     M   M MMMMM  \n");
+  printf("M   M M   M M       M   M     M\n");
+  printf("M   M MMMMM MMMMM   MMMMM MMMMM\n");
+  printf("    PRESS ANYTHING TO START    \n");
+  get_char();
+  terminal_clear();
+}
