@@ -19,9 +19,10 @@ void kernel_main(void) {
 void print_option(char* name, bool highlighted) {
   if(highlighted)
     terminal_set_color(VGA_COLOR_BLACK | VGA_COLOR_LIGHT_GREY << 4);
-  printf("%s\n", name);
+  printf("%s", name);
   if(highlighted)
     terminal_set_color(VGA_COLOR_LIGHT_GREY | VGA_COLOR_BLACK << 4);
+  printf("\n");
 }
     
     
