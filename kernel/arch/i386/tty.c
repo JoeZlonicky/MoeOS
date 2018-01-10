@@ -17,6 +17,10 @@ static size_t terminal_column;
 static uint8_t terminal_color;
 static uint16_t* terminal_buffer;
 
+unsigned char* current_command[80];
+
+unsigned int i;
+
 void terminal_initialize(void) {
   terminal_row = 0;
   terminal_column = 0;
@@ -45,6 +49,7 @@ void terminal_place_char(char c) {
     ++terminal_row;
     terminal_column = 0;
     printf(">");
+
   } else if (u_c == '\b') {
         if (terminal_column > 1) {
             --terminal_column;
@@ -78,6 +83,4 @@ void terminal_clear(void) {
       terminal_place_entry(' ', terminal_color, x, y);
     }
   }
-  terminal_row = 0;
-  terminal_column = 0;
 }

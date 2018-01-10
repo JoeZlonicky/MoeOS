@@ -10,9 +10,7 @@ char* scan_codes[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "-", "=",
  0, 0, "z", "x", "c", "v", "b", "n", "m",",", ".", "/", 0, "*", 0,
  " "};
 
-char* current_command[80];
 
-unsigned int i;
 
 static inline uint8_t inb(uint16_t port)
 {
@@ -40,8 +38,7 @@ char* get_char()
     if(index < sizeof(scan_codes)/sizeof(scan_codes[0])) {
       char* character = scan_codes[index];
       if (character != (char*)0) {
-        current_command[i] = character;
-        i += 1;
+
         return character;
       }
     }

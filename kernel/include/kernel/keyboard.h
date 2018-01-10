@@ -6,6 +6,7 @@
 
 char get_scancode();
 char* get_char();
+char* get_command();
 
 
 #endif
