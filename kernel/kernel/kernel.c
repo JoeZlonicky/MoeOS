@@ -7,7 +7,8 @@
 #include <../arch/i386/vga.h>
 
 void print_option(char* name, bool highlighted);
-char* get_input();
+const char* get_input();
+void welcome_screen();
 
 void kernel_main(void) {
   terminal_initialize();
@@ -17,7 +18,8 @@ void kernel_main(void) {
   print_option("Option 3", false);
   while (1) {
     char* user_input = get_input();
-    printf("You entered: %s", user_input);
+    printf("\nYou entered: %s\n", user_input);
+    if(user_input == "clear") terminal_clear();
   }
 }
 
@@ -30,16 +32,17 @@ void print_option(char* name, bool highlighted) {
   printf("\n");
 }
 
-char* get_input() {
+const char* get_input() {
   char* command = "";
   int position = 0;
   while(1) {
     char* user_input = get_char();
-    if(memcmp(user_input, "\n", 80)) {
+    if(user_input == "\n") {
       return command;
     } else {
-      command[position] = user_input;
+      command[position] = user_input[0];
       ++position;
+      printf(user_input);
     }
   }
 }

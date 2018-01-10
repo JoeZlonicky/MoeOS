@@ -48,12 +48,6 @@ void terminal_place_char(char c) {
   if (u_c=='\n') {
     ++terminal_row;
     terminal_column = 0;
-
-  } else if (u_c == '\b') {
-        if (terminal_column > 1) {
-            --terminal_column;
-            terminal_place_entry(' ', terminal_color, terminal_column, terminal_row);
-        }
   } else if (u_c == '\t') {
       terminal_column += 4;
   } else {
