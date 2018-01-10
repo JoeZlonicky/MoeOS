@@ -15,9 +15,10 @@ void kernel_main(void) {
   welcome_screen();
   while (1) {
     char user_input[80];
+    char clearScreen[] = "clear";
     get_input(user_input);
     printf("\nYou entered: %s\n", user_input);
-    if(user_input == "clear") terminal_clear();
+    if(memcmp(user_input, clearScreen, sizeof(clearScreen)/sizeof(clearScreen[0]))) terminal_clear();
   }
 }
 
@@ -35,6 +36,7 @@ void get_input(char command_array[80]) {
   while(1) {
     char* user_input = get_char();
     if(user_input == "\n") {
+      break;
     } else {
       command_array[position] = user_input[0];
       ++position;
