@@ -15,37 +15,47 @@ void kernel_main(void) {
   welcome_screen();
   while (1) {
     char user_input[80];
-    char clearScreen[] = "clear";
+    char hello_command[80] = "hello";
     get_input(user_input);
-    printf("\nYou entered: %s\n", user_input);
-    if(memcmp(user_input, clearScreen, sizeof(clearScreen)/sizeof(clearScreen[0]))) terminal_clear();
+    if(memcmp(user_input, hello_command, 80) == 0) {
+      printf("\nHello, world");
+    }
   }
 }
 
 void print_option(char* name, bool highlighted) {
   if(highlighted)
     terminal_set_color(VGA_COLOR_BLACK | VGA_COLOR_LIGHT_GREY << 4);
-  printf("%s", name);
+  printf("%s\n", name);
   if(highlighted)
     terminal_set_color(VGA_COLOR_LIGHT_GREY | VGA_COLOR_BLACK << 4);
-  printf("\n");
 }
 
 void get_input(char command_array[80]) {
+  for(int x=0; x < 79; ++x) {
+    command_array[x] = '\0';
+  }
   int position = 0;
+  printf("\n>");
   while(1) {
-    char* user_input = get_char();
-    if(user_input == "\n") {
+    char user_input = get_char();
+    if(user_input == '\n') {
       break;
-    } else {
-      command_array[position] = user_input[0];
+    }
+    else if(user_input == '\b') {
+      if(position > 0) {
+        --position;
+        command_array[position] = '\0';
+        backspace();
+      }
+    }
+    else {
+      command_array[position] = user_input;
+      terminal_place_char(user_input);
       ++position;
-      printf(user_input);
     }
   }
 }
-
-
 
 void welcome_screen() {
   printf("88b           d88    ,ad8888ba,    88888888888      ,ad8888ba,     ad88888ba\n");

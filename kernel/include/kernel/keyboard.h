@@ -5,8 +5,7 @@
 #include <stdint.h>
 
 char get_scancode();
-char* get_char();
-char* get_command();
+char get_char();
 
 
 #endif

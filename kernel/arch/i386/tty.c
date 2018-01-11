@@ -78,4 +78,12 @@ void terminal_clear(void) {
   }
   terminal_row = 0;
   terminal_column = 0;
+  update_cursor(terminal_column, terminal_row, VGA_WIDTH);
+}
+
+void backspace(void) {
+  --terminal_column;
+  terminal_place_char(' ');
+  --terminal_column;
+  update_cursor(terminal_column, terminal_row, VGA_WIDTH);
 }
