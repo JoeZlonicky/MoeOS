@@ -4,24 +4,17 @@
 
 #include <kernel/tty.h>
 #include <kernel/keyboard.h>
+#include <kernel/command_terminal.h>
 #include <../arch/i386/vga.h>
 
 void print_option(char* name, bool highlighted);
-void get_input(char command_array[80]);
 void welcome_screen();
 
 void kernel_main(void) {
   terminal_initialize();
   welcome_screen();
-  while (1) {
-    char user_input[80];
-    char hello_command[80] = "hello";
-    get_input(user_input);
-    if(memcmp(user_input, hello_command, 80) == 0) {
-      printf("\nHello, world");
-    }
-    printf("\n");
-  }
+  command_terminal_loop();
+  printf("You have left the command loop and are now doing nothing, congrats\n");
 }
 
 void print_option(char* name, bool highlighted) {
@@ -30,32 +23,6 @@ void print_option(char* name, bool highlighted) {
   printf("%s\n", name);
   if(highlighted)
     terminal_set_color(VGA_COLOR_LIGHT_GREY | VGA_COLOR_BLACK << 4);
-}
-
-void get_input(char command_array[80]) {
-  for(int x=0; x < 79; ++x) {
-    command_array[x] = '\0';
-  }
-  int position = 0;
-  printf(">");
-  while(1) {
-    char user_input = get_char();
-    if(user_input == '\n') {
-      break;
-    }
-    else if(user_input == '\b') {
-      if(position > 0) {
-        --position;
-        command_array[position] = '\0';
-        backspace();
-      }
-    }
-    else {
-      command_array[position] = user_input;
-      printf("%c", user_input);
-      ++position;
-    }
-  }
 }
 
 void welcome_screen() {
