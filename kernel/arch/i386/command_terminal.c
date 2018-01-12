@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <kernel/command_terminal.h>
+#include <kernel/keyboard.h>
 #include <kernel/tty.h>
 
 static char hello_command[80] = "hello";
@@ -15,7 +16,7 @@ void command_terminal_loop() {
     char user_input[80];
     get_command(user_input);
     if(memcmp(user_input, hello_command, 80) == 0) {
-      printf("\nHello, world");
+      printf("Hello, world\n");
     }
     else if(memcmp(user_input, truth_command, 80) == 0) {
         printf("\nYou do not know de way");

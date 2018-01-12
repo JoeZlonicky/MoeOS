@@ -15,16 +15,14 @@ static uint16_t* const VGA_MEMORY = (uint16_t*) 0xB8000;
 static size_t terminal_row;
 static size_t terminal_column;
 static uint8_t terminal_color;
+static uint8_t fg_terminal_color = VGA_COLOR_RED;
+static uint8_t bg_terminal_color = VGA_COLOR_CYAN;
 static uint16_t* terminal_buffer;
-
-unsigned char* current_command[80];
-
-unsigned int i;
 
 void terminal_initialize(void) {
   terminal_row = 0;
   terminal_column = 0;
-  terminal_color =  vga_entry_color(VGA_COLOR_LIGHT_GREY, VGA_COLOR_BLACK);
+  terminal_color =  vga_entry_color(fg_terminal_color, bg_terminal_color);
   terminal_buffer = VGA_MEMORY;
   for (size_t y = 0; y < VGA_HEIGHT; y++) {
     for (size_t x = 0; x < VGA_WIDTH; x++) {
@@ -34,8 +32,10 @@ void terminal_initialize(void) {
   }
 }
 
-void terminal_set_color(uint8_t color) {
-  terminal_color = color;
+void terminal_set_color(uint8_t fg_color, uint8_t bg_color) {
+  fg_terminal_color = fg_color;
+  bg_terminal_color = bg_color;
+  terminal_color = fg_color | bg_color << 4;
 }
 
 void terminal_place_entry(unsigned char c, uint8_t color, size_t x, size_t y) {
@@ -86,4 +86,8 @@ void backspace(void) {
   terminal_place_char(' ');
   --terminal_column;
   update_cursor(terminal_column, terminal_row, VGA_WIDTH);
+}
+
+void terminal_reverse_colors(void) {
+  terminal_set_color(bg_terminal_color, fg_terminal_color);
 }

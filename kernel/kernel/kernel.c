@@ -4,6 +4,7 @@
 
 #include <kernel/tty.h>
 #include <kernel/keyboard.h>
+#include <kernel/color_menu.h>
 #include <kernel/command_terminal.h>
 #include <../arch/i386/vga.h>
 
@@ -13,16 +14,8 @@ void welcome_screen();
 void kernel_main(void) {
   terminal_initialize();
   welcome_screen();
-  command_terminal_loop();
+  color_menu_loop('f');
   printf("You have left the command loop and are now doing nothing, congrats\n");
-}
-
-void print_option(char* name, bool highlighted) {
-  if(highlighted)
-    terminal_set_color(VGA_COLOR_BLACK | VGA_COLOR_LIGHT_GREY << 4);
-  printf("%s\n", name);
-  if(highlighted)
-    terminal_set_color(VGA_COLOR_LIGHT_GREY | VGA_COLOR_BLACK << 4);
 }
 
 void welcome_screen() {
