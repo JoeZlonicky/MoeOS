@@ -39,7 +39,7 @@ void color_menu_loop(char fg_or_bg) {
       int index = y_position;
       if(x_position == 1)
         index += 8;
-      if(index == 8) {
+      if(index == 8 && x_position != 1) {
         terminal_clear();
         break;
       }
