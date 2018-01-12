@@ -1,35 +1,66 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
-
 #include <kernel/tty.h>
-#include <kernel/keyboard.h>
+#include <kernel/welcome_screen.h>
 #include <kernel/color_menu.h>
 #include <kernel/command_terminal.h>
-#include <../arch/i386/vga.h>
+#include <kernel/menu_features.h>
+#include <stdio.h>
+#include <stdint.h>
 
-void print_option(char* name, bool highlighted);
-void welcome_screen();
+
+void update_main_menu_options(int y_pos);
+
+char option_list[4][40] = {"TicTacToe", "Terminal", "Change Font Color",
+                            "Change Background Color"};
 
 void kernel_main(void) {
   terminal_initialize();
   welcome_screen();
+
+  int y_position = 0;
+  update_main_menu_options(y_position);
+  while(1) {
+    char user_input = get_menu_input();
+    if(user_input == 'w' && y_position > 0)
+      --y_position;
+    else if(user_input == 's' && y_position < 3)
+      ++y_position;
+    if(user_input == 'w' || user_input == 's')
+      update_main_menu_options(y_position);
+
+    if(user_input == '\n') {
+      switch(y_position) {
+        case 0:
+          printf("Playing tic tac toe");
+          break;
+        case 1:
+          terminal_clear();
+          command_terminal_loop();
+          break;
+        case 2:
+          color_menu_loop('f');
+          break;
+        case 3:
+          color_menu_loop('b');
+          break;
+        default:
+          break;
+      }
+      update_main_menu_options(y_position);
+    }
+
+  }
   color_menu_loop('f');
   printf("You have left the command loop and are now doing nothing, congrats\n");
 }
 
-void welcome_screen() {
-  printf("  88b           d88    ,ad8888ba,    88888888888     ,ad8888ba,     ad88888ba  \n");
-  printf("  888b         d888   d8''    `'8b   88             d8''    `'8b   d8'     '8b \n");
-  printf("  88`8b       d8'88  d8'        `8b  88            d8'        `8b  Y8,         \n");
-  printf("  88 `8b     d8' 88  88          88  88aaaaa       88          88  `Y8aaaaa,   \n");
-  printf("  88  `8b   d8'  88  88          88  88'''''       88          88    `'''''8b, \n");
-  printf("  88   `8b d8'   88  Y8,        ,8P  88            Y8,        ,8P          `8b \n");
-  printf("  88    `888'    88   Y8a.    .a8P   88             Y8a.    .a8P   Y8a     a8P \n");
-  printf("  88     `8'     88    `Y8888Y''     88888888888     `'Y8888Y''     'Y88888P'  \n");
-  printf(" 888888888888888888888888888888888888888888888888888888888888888888888888888888\n");
-  printf("             8888888888888  PRESS ANYTHING TO START  8888888888888             \n");
-  printf("                      88888888888888888888888888888888888                      \n");
-  get_char();
+void update_main_menu_options(int y_pos){
   terminal_clear();
+  for(int y=0; y < 4; ++y) {
+    bool highlighted = false;
+    if(y==y_pos)
+      highlighted = true;
+    printf(" ");
+    print_option(option_list[y], highlighted);
+    printf("\n");
+  }
 }

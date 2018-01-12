@@ -16,10 +16,10 @@ void command_terminal_loop() {
     char user_input[80];
     get_command(user_input);
     if(memcmp(user_input, hello_command, 80) == 0) {
-      printf("Hello, world\n");
+      printf("\n Hello, world");
     }
     else if(memcmp(user_input, truth_command, 80) == 0) {
-        printf("\nYou do not know de way");
+        printf("\n You do not know de way");
     }
     else if(memcmp(user_input, exit_command, 80) == 0) {
       terminal_clear();

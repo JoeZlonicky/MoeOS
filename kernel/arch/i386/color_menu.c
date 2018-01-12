@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <kernel/keyboard.h>
 #include <kernel/tty.h>
+#include <kernel/menu_features.h>
 
 char first_option_list[20][20] = {"Black     ", "Blue      ", "Green     ",
                                   "Cyan      ", "Red       ", "Magenta   ",
@@ -18,8 +19,8 @@ void color_menu_loop(char fg_or_bg) {
   int x_position = 0;
   update_color_menu_options(x_position, y_position);
   while(1) {
-    char user_input = get_char();
-    if((user_input == 'w') && y_position > 0)
+    char user_input = get_menu_input();
+    if(user_input == 'w' && y_position > 0)
       --y_position;
     else if(user_input == 's' && y_position < 8) {
       ++y_position;
@@ -74,12 +75,4 @@ void update_color_menu_options(int x_pos, int y_pos) {
     if(y==7)
       printf("\n");
   }
-}
-
-void print_option(char* name, bool highlighted) {
-  if(highlighted)
-    terminal_reverse_colors();
-  printf(name);
-  if(highlighted)
-    terminal_reverse_colors();
 }

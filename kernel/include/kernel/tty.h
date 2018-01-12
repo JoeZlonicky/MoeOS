@@ -12,6 +12,8 @@ void terminal_place_char(char c);
 void terminal_write(const char* data, size_t size);
 void terminal_print(const char* string);
 void terminal_clear(void);
-void terminal_reverse_colors();
+void terminal_reverse_colors(void);
+int get_terminal_fg_color(void);
+int get_terminal_bg_color(void);
 void backspace(void);
 #endif

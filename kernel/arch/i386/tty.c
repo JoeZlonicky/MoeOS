@@ -15,8 +15,8 @@ static uint16_t* const VGA_MEMORY = (uint16_t*) 0xB8000;
 static size_t terminal_row;
 static size_t terminal_column;
 static uint8_t terminal_color;
-static uint8_t fg_terminal_color = VGA_COLOR_RED;
-static uint8_t bg_terminal_color = VGA_COLOR_CYAN;
+static uint8_t fg_terminal_color = VGA_COLOR_LIGHT_GREY;
+static uint8_t bg_terminal_color = VGA_COLOR_BLACK;
 static uint16_t* terminal_buffer;
 
 void terminal_initialize(void) {
@@ -98,4 +98,12 @@ void backspace(void) {
 
 void terminal_reverse_colors(void) {
   terminal_set_color(bg_terminal_color, fg_terminal_color);
+}
+
+int get_terminal_fg_color(void) {
+  return fg_terminal_color;
+}
+
+int get_terminal_bg_color(void) {
+  return bg_terminal_color;
 }
