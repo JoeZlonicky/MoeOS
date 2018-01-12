@@ -38,6 +38,14 @@ void terminal_set_color(uint8_t fg_color, uint8_t bg_color) {
   terminal_color = fg_color | bg_color << 4;
 }
 
+void terminal_set_fg_color(uint8_t color) {
+  terminal_set_color(color, bg_terminal_color);
+}
+
+void terminal_set_bg_color(uint8_t color) {
+  terminal_set_color(fg_terminal_color, color);
+}
+
 void terminal_place_entry(unsigned char c, uint8_t color, size_t x, size_t y) {
   const size_t index = y * VGA_WIDTH + x;
   terminal_buffer[index] = vga_entry(c, color);

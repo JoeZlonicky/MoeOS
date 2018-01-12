@@ -12,13 +12,13 @@ char first_option_list[20][20] = {"Black     ", "Blue      ", "Green     ",
 char second_option_list[20][20] = {"Dark grey", "Light blue", "Light green",
                                "Light cyan", "Light red", "Light magenta",
                                "Light brown", "White", "Apply"};
+
 void color_menu_loop(char fg_or_bg) {
   int y_position = 0;
   int x_position = 0;
   update_options(x_position, y_position);
   while(1) {
     char user_input = get_char();
-    printf("%c", user_input);
     if(user_input == '8' && y_position > 0)
       --y_position;
     else if(user_input == '2' && y_position < 8)
@@ -28,8 +28,20 @@ void color_menu_loop(char fg_or_bg) {
     else if(user_input == '6' && x_position == 0)
       ++x_position;
     if(user_input == '8' || user_input == '2' || user_input == '4' ||
-       user_input == '6')
+       user_input == '6') {
        update_options(x_position, y_position);
+    }
+    if(user_input == '\n') {
+      int index = y_position;
+      if(x_position == 1)
+        index += 8;
+      if(fg_or_bg == 'b')
+        terminal_set_bg_color(index);
+      else
+        terminal_set_fg_color(index);
+      update_options(x_position, y_position);
+
+    }
   }
 }
 

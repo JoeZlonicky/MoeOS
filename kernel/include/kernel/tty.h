@@ -6,6 +6,8 @@
 
 void terminal_initialize(void);
 void terminal_set_color(uint8_t fg_color, uint8_t bg_color);
+void terminal_set_fg_color(uint8_t color);
+void terminal_set_bg_color(uint8_t color);
 void terminal_place_char(char c);
 void terminal_write(const char* data, size_t size);
 void terminal_print(const char* string);
