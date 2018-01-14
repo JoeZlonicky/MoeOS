@@ -46,9 +46,9 @@ void terminal_set_bg_color(uint8_t color) {
   terminal_set_color(fg_terminal_color, color);
 }
 
-void terminal_place_entry(unsigned char c, uint8_t color, size_t x, size_t y) {
+void terminal_place_entry(unsigned char c, size_t x, size_t y) {
   const size_t index = y * VGA_WIDTH + x;
-  terminal_buffer[index] = vga_entry(c, color);
+  terminal_buffer[index] = vga_entry(c, terminal_color);
 }
 
 void terminal_place_char(char c) {
@@ -59,7 +59,7 @@ void terminal_place_char(char c) {
   } else if (u_c == '\t') {
       terminal_column += 4;
   } else {
-    terminal_place_entry(u_c, terminal_color, terminal_column, terminal_row);
+    terminal_place_entry(u_c, terminal_column, terminal_row);
     if (++terminal_column == VGA_WIDTH) {
       terminal_column = 0;
       if (++terminal_row == VGA_HEIGHT)
@@ -81,7 +81,7 @@ void terminal_print(const char* string) {
 void terminal_clear(void) {
   for(size_t y=0; y < VGA_HEIGHT; ++y) {
     for(size_t x=0; x < VGA_WIDTH; ++x) {
-      terminal_place_entry(' ', terminal_color, x, y);
+      terminal_place_entry(' ', x, y);
     }
   }
   terminal_row = 0;

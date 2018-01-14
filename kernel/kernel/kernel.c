@@ -1,5 +1,6 @@
 #include <kernel/tty.h>
 #include <kernel/welcome_screen.h>
+#include <kernel/tictactoe.h>
 #include <kernel/color_menu.h>
 #include <kernel/command_terminal.h>
 #include <kernel/menu_features.h>
@@ -10,7 +11,7 @@
 
 void update_main_menu_options(int y_pos);
 
-char option_list[5][40] = {"TicTacToe(Not Implemented)", "Terminal",
+char option_list[5][40] = {"TicTacToe", "Terminal",
                            "Change Font Color", "Change Background Color",
                            "Shutdown(Not Implemented)"};
 
@@ -32,7 +33,7 @@ void kernel_main(void) {
     if(user_input == '\n') {
       switch(y_position) {
         case 0:
-          printf("Playing tic tac toe");
+          tictactoe_loop();
           break;
         case 1:
           terminal_clear();
@@ -51,7 +52,7 @@ void kernel_main(void) {
         default:
           break;
       }
-      //update_main_menu_options(y_position);
+      update_main_menu_options(y_position);
     }
 
   }
