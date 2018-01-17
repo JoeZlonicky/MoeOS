@@ -1,129 +1,294 @@
-#include <kernel/shutdown.h>
-#define SLP_EN (1 << 13)
-#define GP 0x107
-#define DI 0x07
-
-
+#include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <kernel/cursor.h>
-#include <string.h>
+#include <kernel/keyboard.h>
 
-static unsigned char crc8_table[256];
-static int made_table=0;
+unsigned int *SMI_CMD;
+unsigned char ACPI_ENABLE;
+unsigned char ACPI_DISABLE;
+unsigned int *PM1a_CNT;
+unsigned int *PM1b_CNT;
+long SLP_TYPa;
+long SLP_TYPb;
+long SLP_EN;
+long SCI_EN;
+unsigned char PM1_CNT_LEN;
 
-static void init_crc8(){
-  int i,j;
-  unsigned char crc;
-
-  if(!made_table){
-    for(i = 0; i < 256; i++){
-      crc = i;
-      for(int j = 0; j < 8; j++){
-        crc = (crc << 1) ^ ((crc & 0x80) ? DI : 0);
-      }
-      crc8_table[i] = crc & 0xFF;
-    }
-    made_table = 1;
-  }
-}
-
-unsigned char crc8(unsigned char *crc, unsigned char m){
-
-  if(!made_table)
-    init_crc8();
-
-  *crc = crc8_table[(*crc) ^ m];
-  *crc &= 0xFF;
-  return crc;
-}
-
-#define SLP_EN	(1 << 13)
-void shutdown() // by Napalm and Falkman
+static inline uint8_t inb(uint16_t port)
 {
-	unsigned int i, j, len, count, found, *ptr, *rsdp = 0, *rsdt = 0, *facp = 0, *dsdt = 0;
-	unsigned char *data, slp_typ[2];
+  uint8_t ret;
+  asm volatile ( "inb %1, %0"
+                 : "=a"(ret)
+                 : "Nd"(port) );
+  return ret;
+}
 
-	// find acpi RSDP table pointer
-	for(ptr = (unsigned int *)0x000E0000; ptr < (unsigned int *)0x000FFFFF; ptr++){
-		if(*ptr == ' DSR' && *(ptr + 1) == ' RTP'){ // "RSD PTR "
-			if(crc8((unsigned char *)ptr, 20)) continue;
-			rsdp = ptr;
-			break;
-		}
-	}
-	if(!rsdp) goto haltonly;
+struct RSDPtr
+{
+   unsigned char Signature[8];
+   unsigned char CheckSum;
+   unsigned char OemID[6];
+   unsigned char Revision;
+   unsigned int *RsdtAddress;
+};
 
-	// find RSDT table pointer
-	ptr = (unsigned int *)*(ptr + 4);
-	if(crc8((unsigned char *)ptr, *(ptr + 1))){
-		printf("Error: RSDT checksum mismatch.\n");
-		goto haltonly;
-	}
-	rsdt  = ptr;
-	count = (*(ptr + 1) - 36) / 4;
 
-	// find FACP table pointer
-	ptr += 9; // skip RSDT entries
-	for(i = 0; i < count; i++){
-		for(j = 0; j < 24; j++){
-			if(*(unsigned int *)*ptr == 'PCAF'){ // "FACP"
-				facp = (unsigned int *)*ptr;
-				i = count;
-				break;
-			}
-		}
-	}
-	if(!facp){
-		printf("Error: Could not find FACP table.\n");
-		goto haltonly;
-	}
-	if(crc8((unsigned char *)facp, *(facp + 1))){
-		printf("Error: FACP checksum mismatch.\n");
-		goto haltonly;
-	}
 
-	// find DSDT table pointer
-	ptr = (unsigned int *)*(facp+10); // DSDT address
-	if(*ptr != 'TDSD'){ // "DSDT"
-		printf("Error: Could not find DSDT table.\n");
-		goto haltonly;
-	}
-	if(crc8((unsigned char *)ptr, *(ptr + 1))){
-		printf("Error: DSDT checksum mistmatch.\n");
-		goto haltonly;
-	}
-	dsdt = ptr;
+struct FACP
+{
+   unsigned char Signature[4];
+   unsigned int Length;
+   unsigned char unneded1[40 - 8];
+   unsigned int *DSDT;
+   unsigned char unneded2[48 - 44];
+   unsigned int *SMI_CMD;
+   unsigned char ACPI_ENABLE;
+   unsigned char ACPI_DISABLE;
+   unsigned char unneded3[64 - 54];
+   unsigned int *PM1a_CNT_BLK;
+   unsigned int *PM1b_CNT_BLK;
+   unsigned char unneded4[89 - 72];
+   unsigned char PM1_CNT_LEN;
+};
 
-	// Search DSDT byte-code for ACPI _S5 signature
-	found = 0;
-	len   = *(dsdt + 1) - 36;
-	data  = (unsigned char *)(dsdt + 36);
-	while(len--){
-		if((*(unsigned int *)data & 0x00FFFFFF) == 0x0035535F){ // "_S5"
-			data += 4;
-			if(*data == 0x12){ // 0x012 = package opcode
-				data += 3; // 0x0A = 8bit integer opcode
-				slp_typ[0] = (*data == 0x0A) ? *++data : *data;
-				data++;
-				slp_typ[1] = (*data == 0x0A) ? *++data : *data;
-				found = 1;
-			}
-			break;
-		}
-		data++;
-	}
-	if(!found) goto haltonly;
 
-	// execute the actual shutdown and power-off
-	outb(*(facp + 16), slp_typ[0] | SLP_EN);     // FACP[64] = PM1a_CNT_BLK
-  printf(itoa(*(facp + 17), 10));
-	if(*(facp + 17))
-    outb(*(facp + 17), slp_typ[1] | SLP_EN); // FACP[68] = PM1b_CNT_BLK
 
-  printf(" \nShutting down...\n");
+// check if the given address has a valid header
+unsigned int *acpiCheckRSDPtr(unsigned int *ptr)
+{
+   char *sig = "RSD PTR ";
+   struct RSDPtr *rsdp = (struct RSDPtr *) ptr;
+   unsigned char *bptr;
+   unsigned char check = 0;
+   int i;
 
-haltonly:
-	printf("It is now safe to turn-off your computer.\n");
+   if (memcmp(sig, rsdp, 8) == 0)
+   {
 
+      // check checksum rsdpd
+      bptr = (unsigned char *) ptr;
+      for (i=0; i<sizeof(struct RSDPtr); i++)
+      {
+         check += *bptr;
+         bptr++;
+      }
+
+      // found valid rsdpd
+      if (check == 0) {
+         /*
+          if (desc->Revision == 0)
+            printf("acpi 1");
+         else
+            printf("acpi 2");
+         */
+         return (unsigned int *) rsdp->RsdtAddress;
+      }
+   }
+
+   return '\0';
+}
+
+
+
+// finds the acpi header and returns the address of the rsdt
+unsigned int *acpiGetRSDPtr(void)
+{
+   unsigned int *addr;
+   unsigned int *rsdp;
+
+   // search below the 1mb mark for RSDP signature
+   for (addr = (unsigned int *) 0x000E0000; (int) addr<0x00100000; addr += 0x10/sizeof(addr))
+   {
+      rsdp = acpiCheckRSDPtr(addr);
+      if (rsdp != '\0')
+         return rsdp;
+   }
+
+
+   // at address 0x40:0x0E is the RM segment of the ebda
+   int ebda = *((short *) 0x40E);   // get pointer
+   ebda = ebda*0x10 &0x000FFFFF;   // transform segment into linear address
+
+   // search Extended BIOS Data Area for the Root System Description Pointer signature
+   for (addr = (unsigned int *) ebda; (int) addr<ebda+1024; addr+= 0x10/sizeof(addr))
+   {
+      rsdp = acpiCheckRSDPtr(addr);
+      if (rsdp != '\0')
+         return rsdp;
+   }
+
+   return '\0';
+}
+
+
+
+// checks for a given header and validates checksum
+int acpiCheckHeader(unsigned int *ptr, char *sig)
+{
+   if (memcmp(ptr, sig, 4) == 0)
+   {
+      char *checkPtr = (char *) ptr;
+      int len = *(ptr + 1);
+      char check = 0;
+      while (0<len--)
+      {
+         check += *checkPtr;
+         checkPtr++;
+      }
+      if (check == 0)
+         return 0;
+   }
+   return -1;
+}
+
+
+
+int acpiEnable(void)
+{
+   // check if acpi is enabled
+   if ( (inb((unsigned int) PM1a_CNT) &SCI_EN) == 0 )
+   {
+      // check if acpi can be enabled
+      if (SMI_CMD != 0 && ACPI_ENABLE != 0)
+      {
+         outb((unsigned int) SMI_CMD, ACPI_ENABLE); // send acpi enable command
+         // give 3 seconds time to enable acpi
+         int i;
+         for (i=0; i<300; i++ )
+         {
+            if ( (inb((unsigned int) PM1a_CNT) &SCI_EN) == 1 )
+               break;
+
+         }
+         if (PM1b_CNT != 0)
+            for (; i<300; i++ )
+            {
+               if ( (inb((unsigned int) PM1b_CNT) &SCI_EN) == 1 )
+                  break;
+
+            }
+         if (i<300) {
+            printf("enabled acpi.\n");
+            return 0;
+         } else {
+            printf("couldn't enable acpi.\n");
+            return -1;
+         }
+      } else {
+         printf("no known way to enable acpi.\n");
+         return -1;
+      }
+   } else {
+      //printf("acpi was already enabled.\n");
+      return 0;
+   }
+}
+
+
+
+//
+// bytecode of the \_S5 object
+// -----------------------------------------
+//        | (optional) |    |    |    |
+// NameOP | \          | _  | S  | 5  | _
+// 08     | 5A         | 5F | 53 | 35 | 5F
+//
+// -----------------------------------------------------------------------------------------------------------
+//           |           |              | ( SLP_TYPa   ) | ( SLP_TYPb   ) | ( Reserved   ) | (Reserved    )
+// PackageOP | PkgLength | NumElements  | byteprefix Num | byteprefix Num | byteprefix Num | byteprefix Num
+// 12        | 0A        | 04           | 0A         05  | 0A          05 | 0A         05  | 0A         05
+//
+//----this-structure-was-also-seen----------------------
+// PackageOP | PkgLength | NumElements |
+// 12        | 06        | 04          | 00 00 00 00
+//
+// (Pkglength bit 6-7 encode additional PkgLength bytes [shouldn't be the case here])
+//
+int initAcpi(void)
+{
+   unsigned int *ptr = acpiGetRSDPtr();
+
+   // check if address is correct  ( if acpi is available on this pc )
+   if (ptr != '\0' && acpiCheckHeader(ptr, "RSDT") == 0)
+   {
+      // the RSDT contains an unknown number of pointers to acpi tables
+      int entrys = *(ptr + 1);
+      entrys = (entrys-36) /4;
+      ptr += 36/4;   // skip header information
+
+      while (0<entrys--)
+      {
+         // check if the desired table is reached
+         if (acpiCheckHeader((unsigned int *) *ptr, "FACP") == 0)
+         {
+            entrys = -2;
+            struct FACP *facp = (struct FACP *) *ptr;
+            if (acpiCheckHeader((unsigned int *) facp->DSDT, "DSDT") == 0)
+            {
+               // search the \_S5 package in the DSDT
+               char *S5Addr = (char *) facp->DSDT +36; // skip header
+               int dsdtLength = *(facp->DSDT+1) -36;
+               while (0 < dsdtLength--)
+               {
+                  if ( memcmp(S5Addr, "_S5_", 4) == 0)
+                     break;
+                  S5Addr++;
+               }
+               // check if \_S5 was found
+               if (dsdtLength > 0)
+               {
+                  // check for valid AML structure
+                  if ( ( *(S5Addr-1) == 0x08 || ( *(S5Addr-2) == 0x08 && *(S5Addr-1) == '\\') ) && *(S5Addr+4) == 0x12 )
+                  {
+                     S5Addr += 5;
+                     S5Addr += ((*S5Addr &0xC0)>>6) +2;   // calculate PkgLength size
+
+                     if (*S5Addr == 0x0A)
+                        S5Addr++;   // skip byteprefix
+                     SLP_TYPa = *(S5Addr)<<10;
+                     S5Addr++;
+
+                     if (*S5Addr == 0x0A)
+                        S5Addr++;   // skip byteprefix
+                     SLP_TYPb = *(S5Addr)<<10;
+
+                     SMI_CMD = facp->SMI_CMD;
+
+                     ACPI_ENABLE = facp->ACPI_ENABLE;
+                     ACPI_DISABLE = facp->ACPI_DISABLE;
+
+                     PM1a_CNT = facp->PM1a_CNT_BLK;
+                     PM1b_CNT = facp->PM1b_CNT_BLK;
+
+                     PM1_CNT_LEN = facp->PM1_CNT_LEN;
+
+                     SLP_EN = 1<<13;
+                     SCI_EN = 1;
+
+                     return 0;
+                  } else {
+                     printf("\\_S5 parse error.\n");
+                  }
+               } else {
+                  printf("\\_S5 not present.\n");
+               }
+            } else {
+               printf("DSDT invalid.\n");
+            }
+         }
+         ptr++;
+      }
+      printf("no valid FACP present.\n");
+   } else {
+      printf("no acpi.\n");
+   }
+
+   return -1;
+}
+
+
+
+void acpiPowerOff(void)
+{
+  outb(0xf4, 0x00);
 }
