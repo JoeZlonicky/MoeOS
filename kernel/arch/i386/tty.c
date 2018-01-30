@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <string.h>
-#include <idt.h>
+#include <kernel/idt.h>
 
 #include <kernel/tty.h>
 #include <kernel/cursor.h>
