@@ -58,6 +58,9 @@ void terminal_place_char(char c) {
     terminal_column = 0;
   } else if (u_c == '\t') {
       terminal_column += 4;
+  } else if (u_c == '\b'){
+      backspace();
+
   } else {
     terminal_place_entry(u_c, terminal_column, terminal_row);
     if (++terminal_column == VGA_WIDTH) {

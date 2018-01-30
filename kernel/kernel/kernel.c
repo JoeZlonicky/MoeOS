@@ -5,15 +5,16 @@
 #include <kernel/command_terminal.h>
 #include <kernel/menu_features.h>
 #include <kernel/shutdown.h>
+#include <kernel/text_editor.h>
 #include <stdio.h>
 #include <stdint.h>
 
 
 void update_main_menu_options(int y_pos);
 
-char option_list[5][40] = {"TicTacToe", "Terminal",
+char option_list[6][40] = {"TicTacToe", "Terminal",
                            "Change Font Color", "Change Background Color",
-                           "Shutdown(Not Implemented)"};
+                           "Text Editor", "Shutdown(Not Implemented)"};
 
 void kernel_main(void) {
   terminal_initialize();
@@ -25,7 +26,7 @@ void kernel_main(void) {
     char user_input = get_menu_input();
     if(user_input == 'w' && y_position > 0)
       --y_position;
-    else if(user_input == 's' && y_position < 4)
+    else if(user_input == 's' && y_position < 5)
       ++y_position;
     if(user_input == 'w' || user_input == 's')
       update_main_menu_options(y_position);
@@ -46,8 +47,12 @@ void kernel_main(void) {
           color_menu_loop('b');
           break;
         case 4:
+          terminal_clear();
+          text_loop();
+          break;
+        case 5:
           printf("Shutting down");
-          shutdown();
+          acpiPowerOff();
           break;
         default:
           break;
@@ -60,7 +65,7 @@ void kernel_main(void) {
 
 void update_main_menu_options(int y_pos){
   terminal_clear();
-  for(int y=0; y < 5; ++y) {
+  for(int y=0; y < 6; ++y) {
     bool highlighted = false;
     if(y==y_pos)
       highlighted = true;

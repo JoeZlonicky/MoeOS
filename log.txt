@@ -1,0 +1,1151 @@
+commit 522e37c1efc186c53da844e25ec1812d402d9109
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Wed Jan 17 09:40:52 2018 -0800
+
+    Text Editor Working
+
+1	0	kernel/arch/i386/make.config
+279	114	kernel/arch/i386/shutdown.c
+14	0	kernel/arch/i386/text_editor.c
+3	0	kernel/arch/i386/tty.c
+6	0	kernel/include/kernel/text_editor.h
+10	5	kernel/kernel/kernel.c
+ create mode 100644 kernel/arch/i386/text_editor.c
+ create mode 100644 kernel/include/kernel/text_editor.h
+
+commit b6b30539681cd9823c5218e6991892533dc0d83a
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Sat Jan 13 21:03:11 2018 -0800
+
+    TicTacToe Added!!!
+
+1	0	kernel/arch/i386/make.config
+2	0	kernel/arch/i386/menu_features.c
+224	0	kernel/arch/i386/tictactoe.c
+4	4	kernel/arch/i386/tty.c
+22	0	kernel/include/kernel/tictactoe.h
+1	0	kernel/include/kernel/tty.h
+4	3	kernel/kernel/kernel.c
+ create mode 100644 kernel/include/kernel/tictactoe.h
+
+commit 3c9f63cb206770dfb00064497bdcc55e249bda72
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Fri Jan 12 13:39:36 2018 -0800
+
+    Shutdown is semi working
+
+1	1	kernel/arch/i386/color_menu.c
+1	1	kernel/arch/i386/cursor.c
+1	0	kernel/arch/i386/make.config
+116	20	kernel/arch/i386/shutdown.c
+1	0	kernel/include/kernel/cursor.h
+8	0	kernel/include/kernel/shutdown.h
+11	7	kernel/kernel/kernel.c
+ create mode 100644 kernel/include/kernel/shutdown.h
+
+commit 6cc54f4df144a66fa2e3d1e675e35546ae956e51
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Thu Jan 11 22:28:02 2018 -0800
+
+    Main menu
+
+3	10	kernel/arch/i386/color_menu.c
+2	2	kernel/arch/i386/command_terminal.c
+2	0	kernel/arch/i386/make.config
+24	0	kernel/arch/i386/menu_features.c
+10	2	kernel/arch/i386/tty.c
+21	0	kernel/arch/i386/welcome_screen.c
+0	1	kernel/include/kernel/color_menu.h
+8	0	kernel/include/kernel/menu_features.h
+3	1	kernel/include/kernel/tty.h
+6	0	kernel/include/kernel/welcome_screen.h
+52	21	kernel/kernel/kernel.c
+ create mode 100644 kernel/arch/i386/menu_features.c
+ create mode 100644 kernel/arch/i386/welcome_screen.c
+ create mode 100644 kernel/include/kernel/menu_features.h
+ create mode 100644 kernel/include/kernel/welcome_screen.h
+
+commit 12f0e087f5dc130196e8d1938333b1731b1f2946
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Thu Jan 11 19:22:18 2018 -0800
+
+    Added features to color menu
+
+32	19	kernel/arch/i386/color_menu.c
+1	1	kernel/arch/i386/vga.h
+4	0	kernel/include/kernel/color_menu.h
+
+commit 66ea1cc831877f0f579ce475c67d0ec42b601e4e
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Thu Jan 11 18:19:28 2018 -0800
+
+    Added color changing
+
+14	2	kernel/arch/i386/color_menu.c
+8	0	kernel/arch/i386/tty.c
+2	0	kernel/include/kernel/tty.h
+
+commit cb01250f87748a5884d7cd6aecd52fa123377674
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Thu Jan 11 10:17:06 2018 -0800
+
+    started shutdown
+
+33	0	kernel/arch/i386/shutdown.c
+ create mode 100644 kernel/arch/i386/shutdown.c
+
+commit cf68a4b36152a13f4ee60b12825f7a405988a088
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Thu Jan 11 17:59:31 2018 -0800
+
+    WORKING MENU
+    
+    YEEEEEEEEEEEEEEEEEEEEee
+
+60	0	kernel/arch/i386/color_menu.c
+2	1	kernel/arch/i386/command_terminal.c
+1	0	kernel/arch/i386/make.config
+11	7	kernel/arch/i386/tty.c
+6	0	kernel/include/kernel/color_menu.h
+2	1	kernel/include/kernel/tty.h
+2	9	kernel/kernel/kernel.c
+ create mode 100644 kernel/arch/i386/color_menu.c
+ create mode 100644 kernel/include/kernel/color_menu.h
+
+commit 825f394740ffed7a766786f1c44dc2141a2edebd
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Thu Jan 11 15:04:31 2018 -0800
+
+    Different loops
+
+63	0	kernel/arch/i386/command_terminal.c
+1	0	kernel/arch/i386/make.config
+0	0	kernel/arch/i386/tictactoe.c
+7	0	kernel/include/kernel/command_terminal.h
+3	36	kernel/kernel/kernel.c
+ create mode 100644 kernel/arch/i386/command_terminal.c
+ create mode 100644 kernel/arch/i386/tictactoe.c
+ create mode 100644 kernel/include/kernel/command_terminal.h
+
+commit 76f68de31f108c7b098b7ef21a0081102b8ddd6f
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Wed Jan 10 20:08:24 2018 -0800
+
+    Updated title and added keypad
+
+2	1	kernel/arch/i386/keyboard.c
+2	0	kernel/include/kernel/tty.h
+14	13	kernel/kernel/kernel.c
+
+commit d2fbbd1c45de91e0c6533f157ab1d4866435440e
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Wed Jan 10 17:13:13 2018 -0800
+
+    Fixed getting input
+
+11	15	kernel/arch/i386/keyboard.c
+8	0	kernel/arch/i386/tty.c
+0	81	kernel/arch/i386/tty.c~
+1	2	kernel/include/kernel/keyboard.h
+1	0	kernel/include/kernel/tty.h
+22	12	kernel/kernel/kernel.c
+0	12	kernel/kernel/kernel.c~
+ delete mode 100644 kernel/arch/i386/tty.c~
+ delete mode 100644 kernel/kernel/kernel.c~
+
+commit 1ece69ce77bbad79d9a35aad568f6942fffd41c0
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Wed Jan 10 11:55:44 2018 -0800
+
+    soooo kinda works
+
+3	1	kernel/kernel/kernel.c
+
+commit f520c50ec240a668b9108a242003d05b3602a573
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Jan 10 11:31:29 2018 -0800
+
+    Trying to get command input working
+
+15	19	kernel/kernel/kernel.c
+
+commit cf8eab9ccc5b0b003c54621a8c7a4013736cb40e
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Tue Jan 9 22:05:14 2018 -0800
+
+    Trying to get commands working
+
+0	6	kernel/arch/i386/tty.c
+0	12	kernel/include/kernel/keyboard.h~
+8	5	kernel/kernel/kernel.c
+ delete mode 100644 kernel/include/kernel/keyboard.h~
+
+commit 2cc3191feda520f8f9a6e7ae4799a7496b3ea84e
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Tue Jan 9 20:59:21 2018 -0800
+
+    TRYING TO GET THIS TO WORK
+
+0	1	kernel/arch/i386/tty.c
+12	0	kernel/include/kernel/keyboard.h~
+36	15	kernel/kernel/kernel.c
+ create mode 100644 kernel/include/kernel/keyboard.h~
+
+commit cee0e6ce7bfea24e0d93c0a60ee6ba6d87208f81
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Tue Jan 9 20:40:01 2018 -0800
+
+    Updated title
+
+6	3	kernel/kernel/kernel.c
+
+commit cce70906a734dee6a577b781d906a34c0eef08b2
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Tue Jan 9 12:36:47 2018 -0800
+
+    Fixed a merger problem
+
+2	0	kernel/arch/i386/tty.c
+3	0	run.sh
+
+commit 47592965e5b3b2e768adf099aa49d1d5d7b0c32f
+Merge: 0e10014 3a1d9d7
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Tue Jan 9 20:34:00 2018 -0800
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 0e10014f670e9d3cfb97399c5c71df9f6dd8ef6a
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Tue Jan 9 20:33:52 2018 -0800
+
+    New title
+
+8	6	kernel/kernel/kernel.c
+
+commit 68ea5e429ef3616b5997272761e6bb0c4354f992
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Tue Jan 9 20:15:33 2018 -0800
+
+    MOEOS
+
+2	0	kernel/arch/i386/tty.c
+81	0	kernel/arch/i386/tty.c~
+11	2	kernel/kernel/kernel.c
+ create mode 100644 kernel/arch/i386/tty.c~
+
+commit 7f8fe47773d07e460dfba222e76edea1a17af736
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Tue Jan 9 20:07:30 2018 -0800
+
+    Removed prompt being highlighted
+
+2	1	kernel/kernel/kernel.c
+
+commit 3a1d9d77a447e3c96a7a7fd1e72142c27c5b537e
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Tue Jan 9 12:30:43 2018 -0800
+
+    get_command
+
+1	0	kernel/include/kernel/keyboard.h
+
+commit e1b46ba2f8415ac32124106744a5ea44dcdd5ec5
+Merge: a3fb043 68ea5e4
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Tue Jan 9 12:22:17 2018 -0800
+
+    Started Commands
+
+commit a3fb043d4da1f0f1ee91409ef5c54217f0a6b781
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Tue Jan 9 12:08:50 2018 -0800
+
+    Auto stash before merge of "master" and "origin/master"
+
+3	5	kernel/kernel/kernel.c
+
+commit 289c68e058d4e559729ed1943ada3d1d75b133fd
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Tue Jan 9 12:04:54 2018 -0800
+
+    Auto stash before merge of "master" and "origin/master"
+
+8	1	kernel/arch/i386/keyboard.c
+1	0	kernel/arch/i386/tty.c
+1	0	kernel/kernel/kernel.c
+
+commit c364a2ece56ae6673bad709b42dc627f9517d470
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Tue Jan 9 20:01:32 2018 -0800
+
+    Option printing
+
+0	39	kernel/arch/i386/keyboard.c~
+0	80	kernel/arch/i386/tty.c~
+15	1	kernel/kernel/kernel.c
+12	0	kernel/kernel/kernel.c~
+ delete mode 100644 kernel/arch/i386/keyboard.c~
+ delete mode 100644 kernel/arch/i386/tty.c~
+ create mode 100644 kernel/kernel/kernel.c~
+
+commit 8f64439e08aedbcd39fe635b0859aad548b158d7
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Tue Jan 9 16:07:26 2018 -0800
+
+    Fixed error with getting keyboard input
+
+13	10	kernel/arch/i386/keyboard.c
+39	0	kernel/arch/i386/keyboard.c~
+1	1	kernel/arch/i386/tty.c
+80	0	kernel/arch/i386/tty.c~
+ create mode 100644 kernel/arch/i386/keyboard.c~
+ create mode 100644 kernel/arch/i386/tty.c~
+
+commit 8054ecad45460973c9bdb86a510baa95a37e6efc
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Tue Jan 9 12:30:18 2018 -0800
+
+    Removed valid character list
+    
+    Probably doesn't work, but can't test it
+
+2	6	kernel/arch/i386/keyboard.c
+
+commit 0fa647a756ace25c11c93f9d7dbf496b3af5fc11
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Tue Jan 9 12:28:41 2018 -0800
+
+    Added terminal clear
+    
+    Haven't tested yet
+
+8	0	kernel/arch/i386/tty.c
+1	1	kernel/include/kernel/tty.h
+
+commit 373aea7e1f47754cf3f1b8265af18ad6f9d30dd8
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Mon Jan 8 22:54:17 2018 -0800
+
+    Added cursor updates
+
+15	0	kernel/arch/i386/cursor.c
+1	0	kernel/arch/i386/make.config
+18	4	kernel/arch/i386/tty.c
+9	0	kernel/include/kernel/cursor.h
+1	0	kernel/kernel/kernel.c
+ create mode 100644 kernel/arch/i386/cursor.c
+ create mode 100644 kernel/include/kernel/cursor.h
+
+commit e4c92083710c66d87c62b41c3eedc1fa57c67db5
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Mon Jan 8 18:39:08 2018 -0800
+
+    Added more keys
+
+7	6	kernel/arch/i386/keyboard.c
+1	1	kernel/arch/i386/tty.c
+
+commit 655dc210276d1d14172a9077a6803334c8f3cc41
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Mon Jan 8 16:51:03 2018 -0800
+
+    IT WORKS KINDA
+    
+    Prints keys as you type them, spaces don't work???
+
+4	5	kernel/arch/i386/keyboard.c
+0	37	kernel/arch/i386/keyboard.c~
+1	1	kernel/kernel/kernel.c
+0	10	kernel/kernel/kernel.c~
+ delete mode 100644 kernel/arch/i386/keyboard.c~
+ delete mode 100644 kernel/kernel/kernel.c~
+
+commit f2b2483f8b26867c174e0c30139c2ce6f3dc65bd
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Mon Jan 8 16:39:48 2018 -0800
+
+    Trying to get it to work
+
+16	10	kernel/arch/i386/keyboard.c
+37	0	kernel/arch/i386/keyboard.c~
+2	1	kernel/kernel/kernel.c
+10	0	kernel/kernel/kernel.c~
+ create mode 100644 kernel/arch/i386/keyboard.c~
+ create mode 100644 kernel/kernel/kernel.c~
+
+commit 80ba6d38bb34cc5dd9cab1e48ec595ca3ce40a82
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Mon Jan 1 10:56:13 2018 -0800
+
+    Removed unneeded file, fixing the spacing error
+
+0	3	libc/include/stdint.h
+ delete mode 100644 libc/include/stdint.h
+
+commit 18f0db914d16ebade9c03563d96d8a677b06d296
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Mon Jan 1 10:44:41 2018 -0800
+
+    Fixed missing line in printf
+    
+    Still doesnt change anything though
+
+1	0	libc/stdio/printf.c
+
+commit 3b52e066a1d7d5fe37132284da3666e2a43e6c6d
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Mon Jan 1 10:32:18 2018 -0800
+
+    Fixed spelling error
+    
+    Somehow didnt change anything...
+
+1	1	config.sh
+
+commit 468cde24ffa38b608e6b345bf9693f058b878455
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Mon Jan 1 10:29:53 2018 -0800
+
+    Added #!/bin/sh to bash files
+    
+    Idk if it really matters though
+
+1	0	build.sh
+1	0	clean.sh
+1	0	default-host.sh
+1	0	headers.sh
+1	0	iso.sh
+1	0	qemu.sh
+1	0	run.sh
+1	0	target-triplet-to-arch.sh
+
+commit 5037527d12acb3ba583bf55d842f3c0b04d94a10
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Wed Dec 27 16:09:23 2017 -0800
+
+    Fixed some stuff
+    
+    No actual changes
+
+1	1	kernel/Makefile
+2	2	libc/Makefile
+
+commit bbae70e7645f820af98a1bf8b3e540b9201272cc
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Wed Dec 27 15:53:23 2017 -0800
+
+    Cleaned up some code
+    
+    No actual changes
+
+3	4	kernel/arch/i386/tty.c
+2	4	kernel/kernel/kernel.c
+1	1	libc/include/string.h
+7	7	libc/stdio/place_char.c
+6	4	libc/stdio/printf.c
+5	5	libc/stdlib/abort.c
+
+commit c53534f1dad92a3f3995aead421daed8b9e6074c
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Mon Dec 25 18:42:38 2017 -0800
+
+    1 - 9 +0 works and all characters work
+
+4	3	kernel/arch/i386/keyboard.c
+
+commit 873eb2cca15c7025e2737eea66c06a8ade1d2657
+Merge: fe71771 4b6d6e2
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Fri Dec 22 20:45:34 2017 -0800
+
+    Merge remote-tracking branch 'origin/master'
+
+commit fe717713677ba1db2a7ab0449a250a31aee99f63
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Fri Dec 22 20:44:46 2017 -0800
+
+    Scan codes now kinda work
+    
+    Pressing keys one through zero print out the corresponding key
+
+5	2	kernel/arch/i386/keyboard.c
+1	2	kernel/include/kernel/keyboard.h
+2	2	kernel/kernel/kernel.c
+
+commit 4b6d6e2e63e81ac2d14c2a6ff7bb0ccd38e126f7
+Author: Unknown <matthewgoodall1579@gmail.com>
+Date:   Fri Dec 22 13:35:21 2017 -0800
+
+    Trying to get scan tables working
+
+12	4	kernel/arch/i386/keyboard.c
+2	1	kernel/include/kernel/keyboard.h
+1	2	kernel/kernel/kernel.c
+
+commit 9b4839487fe16f7433cfb3c2b0228126480815b2
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Thu Dec 21 13:45:13 2017 -0800
+
+    Added itoa
+
+4	3	kernel/arch/i386/keyboard.c
+1	1	kernel/arch/i386/tty.c
+3	1	kernel/kernel/kernel.c
+1	0	libc/Makefile
+1	0	libc/include/string.h
+14	0	libc/string/itoa.c
+ create mode 100644 libc/string/itoa.c
+
+commit 40ad9ecfd58027bd896a3424a40abb7323d00a45
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 12:29:09 2017 -0800
+
+    Now runs
+
+2	1	kernel/arch/i386/keyboard.c
+1	0	kernel/arch/i386/make.config
+4	4	kernel/include/kernel/keyboard.h
+4	0	run.sh
+ create mode 100755 run.sh
+
+commit c21825385d2684dce25aa86942abffbc4176436e
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 12:10:43 2017 -0800
+
+    Removed unneeded static inline???
+
+1	1	kernel/arch/i386/keyboard.c
+1	1	kernel/include/kernel/keyboard.h
+
+commit 93cea77a65e303f2bfff47cf566f30d8728ac3c4
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 12:08:28 2017 -0800
+
+    Removed unneeded stddef???
+
+1	2	kernel/include/kernel/keyboard.h
+
+commit faae85c0935d9dbe28820ae53ba13500d4ff2be2
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 12:06:36 2017 -0800
+
+    Fixed missing semicolon
+
+0	1	kernel/arch/i386/keyboard.c
+1	1	kernel/kernel/kernel.c
+
+commit 90ec653beced9642447cc899a785131b15ede496
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 12:04:37 2017 -0800
+
+    Stdint in header file
+
+1	1	kernel/include/kernel/keyboard.h
+
+commit 520f9bc68b187d22df7257de51f51742eafe86d6
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 12:03:20 2017 -0800
+
+    Moved stdint up
+
+1	1	kernel/arch/i386/keyboard.c
+
+commit 60bd84901254bfd23d98a28ce4064bc68793fce8
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 11:58:57 2017 -0800
+
+    Included stdint
+
+1	0	kernel/arch/i386/keyboard.c
+
+commit 12d0b34571ed49cb62f2beb3a270730122a0a0a5
+Merge: 88f978b 611cd3b
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 10:11:08 2017 -0800
+
+    Merge branch 'master' of https://github.com/Cyborger/MoeOS
+
+commit 88f978b2c865f4dbd7373d910afa5a76d8dba0a2
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 10:11:05 2017 -0800
+
+    Included stddef
+
+3	0	kernel/include/kernel/keyboard.h
+
+commit 611cd3bcf3013bf54bfb7cf8684771acea901693
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 10:10:30 2017 -0800
+
+    Fixed KERBOARD
+
+1	1	kernel/kernel/kernel.c
+
+commit 713e550ad4a74ea3f89375db51db417268b9af90
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 10:07:09 2017 -0800
+
+    Applied chmod +x to files
+
+0	0	build.sh
+0	0	clean.sh
+0	0	config.sh
+0	0	default-host.sh
+0	0	headers.sh
+0	0	iso.sh
+0	0	qemu.sh
+0	0	target-triplet-to-arch.sh
+ mode change 100644 => 100755 build.sh
+ mode change 100644 => 100755 clean.sh
+ mode change 100644 => 100755 config.sh
+ mode change 100644 => 100755 default-host.sh
+ mode change 100644 => 100755 headers.sh
+ mode change 100644 => 100755 iso.sh
+ mode change 100644 => 100755 qemu.sh
+ mode change 100644 => 100755 target-triplet-to-arch.sh
+
+commit ed72c82518beb30e29c371277382a0fbaf7a0555
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 10:06:24 2017 -0800
+
+    KERBOARD
+
+1	1	kernel/arch/i386/keyboard.c
+
+commit bd8482043b95480c6f5813c4bd7d928bd5f8f3c8
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 10:02:06 2017 -0800
+
+    Removed unneeded print statement
+
+0	1	kernel/kernel/kernel.c
+
+commit 87fdf0c7011d674c8722a486b2253ff2abbe53eb
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 09:54:59 2017 -0800
+
+    Started keyboard implementation
+
+29	1	kernel/arch/i386/keyboard.c
+8	0	kernel/include/kernel/keyboard.h
+3	0	kernel/kernel/kernel.c
+
+commit b6e23c3473d125a0e150c82e39ced53c81f696a4
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 20 09:39:41 2017 -0800
+
+    Created keyboard files
+    
+    Just need to, you know, write everything
+
+1	0	kernel/arch/i386/keyboard.c
+1	0	kernel/include/kernel/keyboard.h
+ create mode 100644 kernel/arch/i386/keyboard.c
+ create mode 100644 kernel/include/kernel/keyboard.h
+
+commit 765026ab42c4c03f57449c762947a10c67269a96
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Sun Dec 17 16:03:48 2017 -0800
+
+    Finally working
+    
+    Turns out the only reason I was getting errors was due to a missing asterisk....
+
+7	2	kernel/Makefile
+1	1	kernel/arch/i386/tty.c
+
+commit 8d809b977b86519204a9fc0dd276693308cec4b7
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Sat Dec 9 21:45:25 2017 -0800
+
+    Fixed a bug, now more bugs
+    
+    Yay....
+
+1	1	default-host.sh
+2	2	kernel/Makefile
+3	0	libc/include/stdint.h
+ create mode 100644 libc/include/stdint.h
+
+commit 22da02e7c757c9037ad1b58a4ed100ea470de8f1
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Sat Dec 9 17:36:19 2017 -0800
+
+    Almost working
+    
+    Just need to fix a problem with one of the makefiles
+
+1	0	build.sh
+1	0	clean.sh
+1	0	headers.sh
+1	0	iso.sh
+1	0	qemu.sh
+
+commit 9c6747eeae3f3e2e32e492c2c9842c497f9ef394
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Sat Dec 9 17:32:21 2017 -0800
+
+    Fixed some errors
+    
+    Still not really working
+
+2	2	libc/Makefile
+5	5	libc/stdio/printf.c
+
+commit ddc621c16f39c5bb1231cf0782febd4041c5961f
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 6 21:23:41 2017 -0800
+
+    Fixed some mistakes
+    
+    Still not working though....
+
+1	1	kernel/Makefile
+1	1	libc/string/memcmp.c
+
+commit cf05610bd4819541560baa529f26c2809198751d
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Dec 6 21:00:25 2017 -0800
+
+    Still trying to get the makefiles working
+    
+    Just modifying lines here and there
+
+0	1	build.sh
+0	1	clean.sh
+0	1	headers.sh
+0	1	iso.sh
+2	2	kernel/Makefile
+1	1	libc/Makefile
+0	1	qemu.sh
+
+commit a66b684619ebb56a755796d4014a0a041d963794
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Tue Dec 5 12:31:12 2017 -0800
+
+    Fixed bash files to run in cygwin
+    
+    Downloaded dos2unix.exe to convert the bash files to be compatible with
+    cygwin by changing the line endings. Also removed the #!/bin/sh lines,
+    they seemed to cause problems.
+
+0	1	build.sh
+0	1	clean.sh
+0	1	default-host.sh
+-	-	dos2unix.exe
+0	1	headers.sh
+0	1	iso.sh
+5	5	libc/Makefile
+0	1	qemu.sh
+0	1	target-triplet-to-arch.sh
+ create mode 100644 dos2unix.exe
+
+commit a0eb8639da8ab952a762d54cbdda103ad7920050
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Mon Dec 4 21:41:40 2017 -0800
+
+    Wrote the bash files
+
+6	0	build.sh
+11	0	clean.sh
+27	0	config.sh
+2	0	default-host.sh
+9	0	headers.sh
+15	0	iso.sh
+4	0	qemu.sh
+6	0	target-triplet-to-arch.sh
+
+commit faf09d9c3f087aaae6b19dfd0731bed5789b6c42
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Mon Dec 4 21:28:44 2017 -0800
+
+    Finished second makefile
+
+93	0	libc/Makefile
+
+commit d4910432ea9a370cf67fc3cfdb11dbd86b01fea7
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Sun Dec 3 17:19:57 2017 -0800
+
+    Fixed some mistakes
+    
+    Gitignore placed in wrong folder and accidently used an underscore insead of forward slash in the c file
+
+3	0	kernel/.gitignore
+0	3	kernel/arch/i386/.gitignore
+1	1	kernel/kernel/kernel.c
+ create mode 100644 kernel/.gitignore
+ delete mode 100644 kernel/arch/i386/.gitignore
+
+commit f5e92ae623e555bf5171319b91ed8864a03753c5
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Sun Dec 3 17:12:25 2017 -0800
+
+    Wrote the majority of the new organization
+    
+    Pretty decent chance there are errors. Also have to finish writing the second makefile. Also need to setup the bash files for building everything
+
+77	0	kernel/Makefile
+41	0	kernel/arch/i386/boot.S
+15	0	kernel/arch/i386/crti.S
+4	2	kernel/arch/i386/crtn.S
+36	0	kernel/arch/i386/linker.ld
+8	0	kernel/arch/i386/make.config
+59	0	kernel/arch/i386/tty.c
+11	0	kernel/include/kernel/tty.h
+8	0	kernel/kernel/kernel.c
+8	0	libc/arch/i386/make.config
+20	0	libc/include/stdio.h
+17	0	libc/include/stdlib.h
+22	0	libc/include/string.h
+6	0	libc/include/sys/cdefs.h
+17	0	libc/stdio/place_char.c
+5	0	libc/stdio/place_string.c
+79	0	libc/stdio/printf.c
+0	0	libc/stdio/putchar.c
+0	0	libc/stdio/puts.c
+15	0	libc/stdlib/abort.c
+13	0	libc/string/memcmp.c
+9	0	libc/string/memcopy.c
+14	0	libc/string/memmove.c
+8	0	libc/string/memset.c
+7	0	libc/string/strlen.c
+ create mode 100644 libc/stdio/place_char.c
+ create mode 100644 libc/stdio/place_string.c
+ delete mode 100644 libc/stdio/putchar.c
+ delete mode 100644 libc/stdio/puts.c
+
+commit c14cc5a97d9506985a69dcaf4c8463610fcc7081
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Thu Nov 30 19:19:34 2017 -0800
+
+    Revert "Just need to compile"
+    
+    This reverts commit 4931a07b1146e78cab12414b0a8d339227b270f3.
+
+0	7	build.sh
+0	11	clean.sh
+0	28	config.sh
+0	2	default-host.sh
+0	9	headers.sh
+0	15	iso.sh
+0	3	kernel/.gitignore
+0	83	kernel/Makefile
+0	39	kernel/arch/i386/boot.S
+0	15	kernel/arch/i386/crti.S
+4	6	kernel/arch/i386/crtn.S
+0	43	kernel/arch/i386/linker.ld
+0	8	kernel/arch/i386/make.config
+0	58	kernel/arch/i386/tty.c
+18	18	kernel/arch/i386/vga.h
+0	11	kernel/include/kernel/tty.h
+0	8	kernel/kernel/kernel.c
+0	93	libc/Makefile
+0	8	libc/arch/i386/make.config
+0	20	libc/include/stdio.h
+0	17	libc/include/stdlib.h
+0	22	libc/include/string.h
+0	6	libc/include/sys/cdefs.h
+0	80	libc/stdio/printf.c
+0	15	libc/stdio/putchar.c
+0	5	libc/stdio/puts.c
+0	15	libc/stdlib/abort.c
+0	13	libc/string/memcmp.c
+0	9	libc/string/memcpy.c
+0	14	libc/string/memmove.c
+0	8	libc/string/memset.c
+0	8	libc/string/strlen.c
+0	5	qemu.sh
+0	6	target-triplet-to-arch.sh
+ delete mode 100644 kernel/.gitignore
+ delete mode 100644 libc/string/memcpy.c
+
+commit 4931a07b1146e78cab12414b0a8d339227b270f3
+Author: MatthewGoodall <matthewgoodall1579@gmail.com>
+Date:   Fri Dec 1 03:12:13 2017 -0800
+
+    Just need to compile
+
+7	0	build.sh
+11	0	clean.sh
+28	0	config.sh
+2	0	default-host.sh
+9	0	headers.sh
+15	0	iso.sh
+3	0	kernel/.gitignore
+83	0	kernel/Makefile
+39	0	kernel/arch/i386/boot.S
+15	0	kernel/arch/i386/crti.S
+6	4	kernel/arch/i386/crtn.S
+43	0	kernel/arch/i386/linker.ld
+8	0	kernel/arch/i386/make.config
+58	0	kernel/arch/i386/tty.c
+18	18	kernel/arch/i386/vga.h
+11	0	kernel/include/kernel/tty.h
+8	0	kernel/kernel/kernel.c
+93	0	libc/Makefile
+8	0	libc/arch/i386/make.config
+20	0	libc/include/stdio.h
+17	0	libc/include/stdlib.h
+22	0	libc/include/string.h
+6	0	libc/include/sys/cdefs.h
+80	0	libc/stdio/printf.c
+15	0	libc/stdio/putchar.c
+5	0	libc/stdio/puts.c
+15	0	libc/stdlib/abort.c
+13	0	libc/string/memcmp.c
+9	0	libc/string/memcpy.c
+14	0	libc/string/memmove.c
+8	0	libc/string/memset.c
+8	0	libc/string/strlen.c
+5	0	qemu.sh
+6	0	target-triplet-to-arch.sh
+ create mode 100644 kernel/.gitignore
+ create mode 100644 libc/string/memcpy.c
+
+commit 8b6fd4e4683333f47c596e92daed661bf2d99a7d
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Nov 29 21:27:51 2017 -0800
+
+    Started writing the files
+
+7	0	kernel/arch/i386/crtn.S
+33	0	kernel/arch/i386/vga.h
+
+commit 4b7a3b32d1a6ccb2304a2ea2c1dae564995c9d0d
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Nov 29 16:38:16 2017 -0800
+
+    Added file structure
+    
+    Basically no files have anything in them though.
+
+3	0	.gitignore
+0	0	build.sh
+0	0	clean.sh
+0	0	config.sh
+0	0	default-host.sh
+0	0	headers.sh
+0	0	iso.sh
+0	0	kernel/Makefile
+3	0	kernel/arch/i386/.gitignore
+0	0	kernel/arch/i386/boot.S
+0	0	kernel/arch/i386/crti.S
+0	0	kernel/arch/i386/crtn.S
+0	0	kernel/arch/i386/linker.ld
+0	0	kernel/arch/i386/make.config
+0	0	kernel/arch/i386/tty.c
+0	0	kernel/arch/i386/vga.h
+0	0	kernel/include/kernel/tty.h
+0	0	kernel/kernel/kernel.c
+3	0	libc/.gitignore
+0	0	libc/Makefile
+0	0	libc/arch/i386/make.config
+0	0	libc/include/stdio.h
+0	0	libc/include/stdlib.h
+0	0	libc/include/string.h
+0	0	libc/include/sys/cdefs.h
+0	0	libc/stdio/printf.c
+0	0	libc/stdio/putchar.c
+0	0	libc/stdio/puts.c
+0	0	libc/stdlib/abort.c
+0	0	libc/string/memcmp.c
+0	0	libc/string/memcopy.c
+0	0	libc/string/memmove.c
+0	0	libc/string/memset.c
+0	0	libc/string/strlen.c
+0	0	qemu.sh
+0	0	target-triplet-to-arch.sh
+ create mode 100644 .gitignore
+ create mode 100644 build.sh
+ create mode 100644 clean.sh
+ create mode 100644 config.sh
+ create mode 100644 default-host.sh
+ create mode 100644 headers.sh
+ create mode 100644 iso.sh
+ create mode 100644 kernel/Makefile
+ create mode 100644 kernel/arch/i386/.gitignore
+ create mode 100644 kernel/arch/i386/boot.S
+ create mode 100644 kernel/arch/i386/crti.S
+ create mode 100644 kernel/arch/i386/crtn.S
+ create mode 100644 kernel/arch/i386/linker.ld
+ create mode 100644 kernel/arch/i386/make.config
+ create mode 100644 kernel/arch/i386/tty.c
+ create mode 100644 kernel/arch/i386/vga.h
+ create mode 100644 kernel/include/kernel/tty.h
+ create mode 100644 kernel/kernel/kernel.c
+ create mode 100644 libc/.gitignore
+ create mode 100644 libc/Makefile
+ create mode 100644 libc/arch/i386/make.config
+ create mode 100644 libc/include/stdio.h
+ create mode 100644 libc/include/stdlib.h
+ create mode 100644 libc/include/string.h
+ create mode 100644 libc/include/sys/cdefs.h
+ create mode 100644 libc/stdio/printf.c
+ create mode 100644 libc/stdio/putchar.c
+ create mode 100644 libc/stdio/puts.c
+ create mode 100644 libc/stdlib/abort.c
+ create mode 100644 libc/string/memcmp.c
+ create mode 100644 libc/string/memcopy.c
+ create mode 100644 libc/string/memmove.c
+ create mode 100644 libc/string/memset.c
+ create mode 100644 libc/string/strlen.c
+ create mode 100644 qemu.sh
+ create mode 100644 target-triplet-to-arch.sh
+
+commit 067f432c05ca2e9b44fa1cee5bed877c6d74a5d4
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Wed Nov 29 16:29:04 2017 -0800
+
+    Removed files that are no longer needed
+
+0	1	.gitignore
+0	1	Bat files/Paths/compiler.txt
+0	1	Bat files/Paths/cygwin.txt
+0	1	Bat files/Paths/qemu.txt
+0	0	Bat files/check_multiboot.bat
+0	6	Bat files/compile_boot.bat
+0	6	Bat files/compile_kernel.bat
+0	6	Bat files/link.bat
+0	4	Bat files/run_in_qemu.bat
+-	-	Build/boot.o
+-	-	Build/kernel.o
+-	-	Build/moe.bin
+0	38	boot.s
+0	3	grub.cfg
+0	146	kernel.c++
+0	35	linker.ld
+ delete mode 100644 .gitignore
+ delete mode 100644 Bat files/Paths/compiler.txt
+ delete mode 100644 Bat files/Paths/cygwin.txt
+ delete mode 100644 Bat files/Paths/qemu.txt
+ delete mode 100644 Bat files/check_multiboot.bat
+ delete mode 100644 Bat files/compile_boot.bat
+ delete mode 100644 Bat files/compile_kernel.bat
+ delete mode 100644 Bat files/link.bat
+ delete mode 100644 Bat files/run_in_qemu.bat
+ delete mode 100644 Build/boot.o
+ delete mode 100644 Build/kernel.o
+ delete mode 100644 Build/moe.bin
+ delete mode 100644 boot.s
+ delete mode 100644 grub.cfg
+ delete mode 100644 kernel.c++
+ delete mode 100644 linker.ld
+
+commit 60715b9f58d3d820cbabc69de1f76e39e9aaa710
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Sat Nov 25 18:03:39 2017 -0800
+
+    Added int to char* conversion
+    
+    So scan code can now print as binary instead of some weird symbol.
+
+-	-	Build/kernel.o
+-	-	Build/moe.bin
+12	3	kernel.c++
+
+commit 1dec73431df56c5cb16fe57890608185576ce4e5
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Sat Nov 25 12:56:27 2017 -0800
+
+    Can now detect input
+    
+    Can't yet distinguish between different types of input such as keyboard vs mouse, also can't print the actual character. Also updated print functions to print and println. Also changed the color function so you can change the background color. TODO: Fix warning message when compiling kernel.c++.
+
+-	-	Build/kernel.o
+-	-	Build/moe.bin
+1	1	boot.s
+37	14	kernel.c++
+
+commit 1860cf09a01a70fb19e8693fe35f8cf8a0d9fee3
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Fri Nov 24 23:16:38 2017 -0800
+
+    Updated gitignore
+
+1	1	.gitignore
+
+commit 0bfc5f4f7f19258eafb682833c4f3a81f45d3baa
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Fri Nov 24 23:15:18 2017 -0800
+
+    Create .gitignore
+
+1	0	.gitignore
+ create mode 100644 .gitignore
+
+commit 7be6e1a5274f42876c148cc46682b2270618959f
+Author: Cyborger <joe.zlonicky@gmail.com>
+Date:   Fri Nov 24 23:10:59 2017 -0800
+
+    Added bat files for building
+    
+    Everything now works on windows. Adjust text files in "Bat files/Path/" for current setup to use bat files to do all the work.  Also everything should now be compiled in the Build directory so the main directory doesn't get polluted.
+
+1	0	Bat files/Paths/compiler.txt
+1	0	Bat files/Paths/cygwin.txt
+1	0	Bat files/Paths/qemu.txt
+0	0	Bat files/check_multiboot.bat
+6	0	Bat files/compile_boot.bat
+6	0	Bat files/compile_kernel.bat
+6	0	Bat files/link.bat
+4	0	Bat files/run_in_qemu.bat
+-	-	Build/boot.o
+-	-	Build/kernel.o
+-	-	Build/moe.bin
+ create mode 100644 Bat files/Paths/compiler.txt
+ create mode 100644 Bat files/Paths/cygwin.txt
+ create mode 100644 Bat files/Paths/qemu.txt
+ create mode 100644 Bat files/check_multiboot.bat
+ create mode 100644 Bat files/compile_boot.bat
+ create mode 100644 Bat files/compile_kernel.bat
+ create mode 100644 Bat files/link.bat
+ create mode 100644 Bat files/run_in_qemu.bat
+ create mode 100644 Build/boot.o
+ create mode 100644 Build/kernel.o
+ create mode 100644 Build/moe.bin
+
+commit 446b9116695971a8e54e2ae128ba11689bf7860b
+Author: Joe <joe.zlonicky@gmail.com>
+Date:   Wed Nov 22 21:20:55 2017 -0800
+
+    Updated README
+
+1	1	README.md
+
+commit 03da2093352c7e20f6dd4c54058723d848f8de80
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Wed Nov 22 21:12:09 2017 -0800
+
+    Added newline
+    
+    First actual addition!
+
+6	0	kernel.c++
+
+commit 466cdbfbcca7851820eef0f85f7ce27cbc103a7e
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Wed Nov 22 20:58:26 2017 -0800
+
+    The start
+    
+    Initially created on November 19
+
+38	0	boot.s
+3	0	grub.cfg
+108	0	kernel.c++
+35	0	linker.ld
+ create mode 100644 boot.s
+ create mode 100644 grub.cfg
+ create mode 100644 kernel.c++
+ create mode 100644 linker.ld
+
+commit 3ac889965a6f4e792c05a0f2ae70cc0cf522e3a7
+Author: Unknown <joe.zlonicky@gmail.com>
+Date:   Wed Nov 22 20:55:21 2017 -0800
+
+    Initial commit
+
+1	0	README.md
+ create mode 100644 README.md

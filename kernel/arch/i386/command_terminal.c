@@ -10,6 +10,7 @@ static char hello_command[80] = "hello";
 static char clear_command[80] = "clear";
 static char truth_command[80] = "do i know the way";
 static char exit_command[80] = "exit";
+static char matrix[80] = "matrix";
 
 void command_terminal_loop() {
   while(1) {
@@ -24,6 +25,12 @@ void command_terminal_loop() {
     else if(memcmp(user_input, exit_command, 80) == 0) {
       terminal_clear();
       break;
+    }
+    else if(memcmp(user_input, matrix, 80) == 0){
+        while(1);
+        {
+            printf(user_input);
+        }    
     }
 
     printf("\n");
