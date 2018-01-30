@@ -9,6 +9,9 @@
 void text_loop(){
   while(1){
     char user_input = get_char();
+    if(user_input =='\r'){
+        break;
+    }
     printf("%c", user_input);
   }
 }
