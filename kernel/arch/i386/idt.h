@@ -1,7 +1,10 @@
 #ifndef IDT_H
 #define IDT_H
 
-#include "types.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+#include <stdio.h>
 
 #define KERNEL_CS 0x08
 
