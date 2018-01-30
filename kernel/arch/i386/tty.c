@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <string.h>
+#include <idt.h>
 
 #include <kernel/tty.h>
 #include <kernel/cursor.h>
@@ -30,6 +31,8 @@ void terminal_initialize(void) {
       terminal_buffer[index] = vga_entry(' ', terminal_color);
     }
   }
+  set_idt();
+
 }
 
 void terminal_set_color(uint8_t fg_color, uint8_t bg_color) {
