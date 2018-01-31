@@ -7,6 +7,8 @@
 #include <stdio.h>
 
 #define KERNEL_CS 0x08
+#define low_16(address) (uint16_t)((address) & 0xFFFF)
+#define high_16(address) (uint16_t)(((address) >> 16) & 0xFFFF)
 
 typedef struct {
     uint16_t low_offset;
